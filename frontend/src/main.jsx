@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import PetReportContextProvider from './context/petReport/PetReportContextProvider.jsx'
+import { PetReportContextProvider } from './context/petReport/PetReportContext.jsx'
 
 createRoot(document.getElementById('root')).render(
     <PetReportContextProvider>

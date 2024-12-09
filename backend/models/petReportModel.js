@@ -4,17 +4,14 @@ const { Schema } = mongoose
 
 const petReportSchema = new Schema({
     image: {
-        type: String,
-        required: true
+        type: String
     },
     name: {
         type: String,
-        required: true,
         maxlength: 20
     },
     status: {
         type: String,
-        required: true,
         enum: ['lost', 'found']
     },
     breed: {
