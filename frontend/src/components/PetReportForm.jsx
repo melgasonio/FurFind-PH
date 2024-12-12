@@ -80,6 +80,13 @@ const PetReportForm = () => {
         onChange={handleChange}
         required
       >
+        <option
+         key="display-region"
+         value=""
+         disabled
+        >
+          Select a region
+        </option>
         {regions.map((r) => (
           <option 
             key={r.code} 
@@ -98,10 +105,17 @@ const PetReportForm = () => {
         onChange={handleChange}
         required
       >
+        <option
+         key="display-city"
+         value=""
+         disabled
+        >
+          Select a city
+        </option>
         {cities.map((c) => (
           <option 
             key={c.code} 
-            value={c.name}
+            value=""
           >
             {c.name}
           </option>
