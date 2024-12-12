@@ -1,91 +1,14 @@
-import { useState, useRef } from 'react';
-import usePetReportContext from '../hooks/usePetReportContext';
-import { uploadImage } from '../apis/firebase/firebaseStorage';
-import { compressImage } from '../apis/imagecompression/imageCompression'
+import { usePetReportForm } from "../hooks/report_form/usePetReportForm";
 
 const PetReportForm = () => {
-  const { dispatch } = usePetReportContext();
-
-  const [formData, setFormData] = useState({
-    name: '',
-    status: 'lost',
-    breed: '',
-    last_seen_date: '',
-    notes: ''
-  });
-  const [imageFile, setImageFile] = useState(null);
-  const imageInputRef = useRef(null)
-  const [error, setError] = useState(null);
-
-  // Update form state
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    if (name === 'image') {
-      setImageFile(files[0]); // Save file separately
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
-  // Form submit handler
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Convert last_seen_date to Date object
-      const lastSeenDate = new Date(formData.last_seen_date)
-
-      // Prepare the data to be sent to the server
-      const reportData = {...formData, last_seen_date: lastSeenDate}
-
-      // Send POST request to server
-      const response = await fetch('http://localhost:5000/api/petreports', {
-        method: 'POST',
-        body: JSON.stringify(reportData),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to create pet report');
-      }
-
-      const { _id } = await response.json();
-
-      // Upload image if present
-      if (imageFile) {
-        // Compress image for better performance
-        const compressedImage = await compressImage(imageFile)
-
-        // Upload image
-        const downloadURL = await uploadImage(compressedImage, formData.status, _id);
-        console.log('Image uploaded successfully:', downloadURL);
-      }
-
-      // Reset form and dispatch action
-      setFormData({ 
-        name: '', 
-        status: 'lost', 
-        breed: '',
-        last_seen_date: ''
-       });
-      setImageFile(null);
-      if (imageInputRef.current) {
-        imageInputRef.current.value = ''
-      }
-
-      setError(null);
-
-      dispatch({ type: 'CREATE_PETREPORT', payload: { ...formData, _id } });
-    } catch (submitError) {
-      console.error('Error in form submission:', submitError);
-      setError(submitError.message);
-    }
-  };
+  const {
+    formData,
+    regions,
+    cities,
+    handleChange,
+    handleSubmit,
+    error
+  } = usePetReportForm();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -98,7 +21,6 @@ const PetReportForm = () => {
         type="file"
         accept="image/*"
         onChange={handleChange}
-        ref={imageInputRef}
         required
       />
 
@@ -121,8 +43,12 @@ const PetReportForm = () => {
         onChange={handleChange}
         required
       >
-        <option value="lost">Lost</option>
-        <option value="found">Found</option>
+        <option key="lost" value="lost">
+          Lost
+        </option>
+        <option key="found" value="found">
+          Found
+        </option>
       </select>
 
       <label htmlFor="breed">Breed:</label>
@@ -146,6 +72,42 @@ const PetReportForm = () => {
         required
       />
 
+      <label htmlFor="last_seen_region">Region:</label>
+      <select
+        id="last_seen_region"
+        name="last_seen_region"
+        value={formData.last_seen_region}
+        onChange={handleChange}
+        required
+      >
+        {regions.map((r) => (
+          <option 
+            key={r.code} 
+            value={r.name}
+          >
+            {r.name}
+          </option>
+        ))}
+      </select>
+
+      <label htmlFor="last_seen_city">City/Municipality:</label>
+      <select
+        id="last_seen_city"
+        name="last_seen_city"
+        value={formData.last_seen_city}
+        onChange={handleChange}
+        required
+      >
+        {cities.map((c) => (
+          <option 
+            key={c.code} 
+            value={c.name}
+          >
+            {c.name}
+          </option>
+        ))}
+      </select>
+
       <label htmlFor="notes">Notes:</label>
       <textarea
         id="notes"
@@ -158,7 +120,7 @@ const PetReportForm = () => {
       />
 
       <button type="submit">Report Pet</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </form>
   );
 };

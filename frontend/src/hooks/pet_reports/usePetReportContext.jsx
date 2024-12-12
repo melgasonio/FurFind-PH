@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import { PetReportContext } from "../context/petReport/PetReportContext"
+import { PetReportContext } from "../../context/petReport/PetReportContext"
 
-const usePetReportContext = () => {
+export const usePetReportContext = () => {
     const context = useContext(PetReportContext)
 
     if (!context) {
@@ -10,5 +10,3 @@ const usePetReportContext = () => {
 
     return context
 }
-
-export default usePetReportContext

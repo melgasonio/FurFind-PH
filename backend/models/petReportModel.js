@@ -3,12 +3,10 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const petReportSchema = new Schema({
-    image: {
-        type: String
-    },
     name: {
         type: String,
-        maxlength: 20
+        maxlength: 20,
+        required: true
     },
     status: {
         type: String,
@@ -18,20 +16,16 @@ const petReportSchema = new Schema({
         type: String,
         maxlength: 20
     },
-    last_seen_location_province: {
-        type: String
-    },
-    last_seen_location_city: {
-        type: String
-    },
-    last_seen_location_barangay: {
-        type: String
-    },
-    last_seen_location_zip: {
-        type: Number
-    },
     last_seen_date: {
         type: Date
+    },
+    last_seen_location_region: {
+        type: String,
+        required: true
+    },
+    last_seen_location_city: {
+        type: String,
+        required: true
     },
     notes: {
         type: String,
