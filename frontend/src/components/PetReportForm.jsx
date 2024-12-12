@@ -81,7 +81,7 @@ const PetReportForm = () => {
         required
       >
         <option
-         key="display-region"
+         key="dp-region"
          value=""
          disabled
         >
@@ -106,7 +106,7 @@ const PetReportForm = () => {
         required
       >
         <option
-         key="display-city"
+         key="dp-city"
          value=""
          disabled
         >
@@ -115,7 +115,7 @@ const PetReportForm = () => {
         {cities.map((c) => (
           <option 
             key={c.code} 
-            value=""
+            value={c.name}
           >
             {c.name}
           </option>

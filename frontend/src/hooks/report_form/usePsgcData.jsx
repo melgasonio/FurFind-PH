@@ -13,7 +13,7 @@ export const usePsgcData = () => {
                 setRegions(regionsArray);
             } catch (err) {
                 console.error("Error fetching regions:", err);
-                setError("Failed to load regions")
+                setError("Failed to load regions");
             }
         };
     
@@ -36,5 +36,5 @@ export const usePsgcData = () => {
         regions,
         fetchCities,
         error
-    }
+    };
 }

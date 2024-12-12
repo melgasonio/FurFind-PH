@@ -23,13 +23,8 @@ export const usePetReportChange = (
             const region = value;
             const cities = await fetchCities(region);
             setCities(cities);
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: value,
-                last_seen_city: cities
-            }));
         }
     }
 
-    return { cities, handleFormChange }
+    return { cities, handleFormChange };
 }

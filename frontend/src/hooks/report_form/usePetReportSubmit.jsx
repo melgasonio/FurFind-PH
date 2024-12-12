@@ -37,9 +37,9 @@ export const usePetReportSubmit = (dispatch) => {
             setError(err.message)
             return err.message;
     } finally {
-        setIsSubmitting(false)
+        setIsSubmitting(false);
     }
    };
 
-   return { submitPetReport, isSubmitting, error }
+   return { submitPetReport, isSubmitting, error };
 }

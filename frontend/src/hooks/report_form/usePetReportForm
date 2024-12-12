@@ -25,10 +25,12 @@ export const usePetReportForm = () => {
       error
     } = usePsgcData();
 
+    console.log(formData);
+
     const { cities, handleFormChange } = usePetReportChange();
 
     const handleChange = (e) => {
-        handleFormChange(e, setFormData, setImageFile)
+        handleFormChange(e, setFormData, setImageFile);
     }
 
     const { submitPetReport } = usePetReportSubmit(dispatch);
@@ -36,7 +38,7 @@ export const usePetReportForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await submitPetReport(formData, imageFile)
+        const response = await submitPetReport(formData, imageFile);
         
         setFormData({
             name: "",
@@ -58,5 +60,5 @@ export const usePetReportForm = () => {
         handleChange,
         handleSubmit,
         error
-    }
+    };
 }
