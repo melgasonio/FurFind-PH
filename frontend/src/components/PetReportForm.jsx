@@ -86,13 +86,16 @@ const PetReportForm = () => {
         >
           Select a region
         </option>
-        {regions.map((r) => (
-          <option 
-            key={r.code} 
-            value={r.name}
-          >
-            {r.name}
-          </option>
+        {regions
+          .slice()
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((r) => (
+            <option 
+              key={r.code} 
+              value={r.name}
+            >
+              {r.name}
+            </option>
         ))}
       </select>
 
@@ -111,13 +114,16 @@ const PetReportForm = () => {
         >
           Select a city
         </option>
-        {cities.map((c) => (
-          <option 
-            key={c.code} 
-            value={c.name}
-          >
-            {c.name}
-          </option>
+        {cities
+          .slice()
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((c) => (
+            <option 
+              key={c.code} 
+              value={c.name}
+            >
+              {c.name}
+            </option>
         ))}
       </select>
 
