@@ -10,7 +10,7 @@ const petReportSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['lost', 'found']
+        enum: ["lost", "found"]
     },
     breed: {
         type: String,
@@ -19,11 +19,11 @@ const petReportSchema = new Schema({
     last_seen_date: {
         type: Date
     },
-    last_seen_location_region: {
+    last_seen_region: {
         type: String,
         required: true
     },
-    last_seen_location_city: {
+    last_seen_city: {
         type: String,
         required: true
     },

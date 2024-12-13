@@ -25,8 +25,6 @@ export const usePetReportForm = () => {
       error
     } = usePsgcData();
 
-    console.log(formData);
-
     const { cities, handleFormChange } = usePetReportChange();
 
     const handleChange = (e) => {

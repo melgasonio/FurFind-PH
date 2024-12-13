@@ -25,29 +25,23 @@ const getPetReport = async (req, res) => {
 
 const createPetReport = async (req, res) => {
     const {
-        image,
         name,
         status,
         breed,
-        last_seen_location_province,
-        last_seen_location_city,
-        last_seen_location_barangay,
-        last_seen_location_zip,
         last_seen_date,
+        last_seen_region,
+        last_seen_city,
         notes 
     } = req.body
 
     try {
         const petReport = await PetReports.create({
-            image,
             name,
             status,
             breed,
-            last_seen_location_province,
-            last_seen_location_city,
-            last_seen_location_barangay,
-            last_seen_location_zip,
             last_seen_date,
+            last_seen_region,
+            last_seen_city,
             notes 
         })
         res.status(200).json(petReport)

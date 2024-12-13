@@ -69,7 +69,6 @@ const PetReportForm = () => {
         type="date"
         value={formData.last_seen_date}
         onChange={handleChange}
-        required
       />
 
       <label htmlFor="last_seen_region">Region:</label>
