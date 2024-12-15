@@ -20,6 +20,8 @@ export const usePetReportForm = () => {
 
     const [imageFile, setImageFile] = useState(null);
 
+    const fileInputRef = useRef(null);
+
     const {
       regions,
       error
@@ -36,7 +38,7 @@ export const usePetReportForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await submitPetReport(formData, imageFile);
+        await submitPetReport(formData, imageFile);
         
         setFormData({
             name: "",
@@ -49,12 +51,17 @@ export const usePetReportForm = () => {
         });
 
         setImageFile(null);
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
     }
 
     return {
         formData,
         regions,
         cities,
+        fileInputRef,
         handleChange,
         handleSubmit,
         error
