@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { uploadImage } from "../../apis/firebase/firebaseStorage";
+import { useImageUploader } from "./useImageUploader";
 import { compressImage } from "../../apis/imagecompression/imageCompression";
 
 export const usePetReportSubmit = (dispatch) => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, isSubmitted] = useState(false);
     const [error, setError] = useState(null);
+    const { uploadImage } = useImageUploader();
 
     const submitPetReport = async (formData, imageFile) => {
         console.log("FormData before submission:", formData);
@@ -32,9 +33,9 @@ export const usePetReportSubmit = (dispatch) => {
                 setError(err.message)
                 return err.message;
         } finally {
-            setIsSubmitting(false);
+            isSubmitted("complete");
         }
    };
 
-   return { submitPetReport, isSubmitting, error };
+   return { submitPetReport, submitted , error };
 }

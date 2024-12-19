@@ -31,7 +31,7 @@ export const usePetReportForm = () => {
         handleFormChange(e, setFormData, setImageFile);
     }
 
-    const { submitPetReport } = usePetReportSubmit(dispatch);
+    const { submitPetReport, submitted } = usePetReportSubmit(dispatch);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,6 +57,7 @@ export const usePetReportForm = () => {
         cities,
         handleChange,
         handleSubmit,
+        submitted,
         error
     };
 }
