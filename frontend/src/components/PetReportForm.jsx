@@ -5,7 +5,6 @@ const PetReportForm = () => {
     formData,
     regions,
     cities,
-    fileInputRef,
     handleChange,
     handleSubmit,
     error
@@ -21,7 +20,6 @@ const PetReportForm = () => {
         name="image"
         type="file"
         accept="image/*"
-        ref={fileInputRef}
         onChange={handleChange}
         required
       />
