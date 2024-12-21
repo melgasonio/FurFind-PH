@@ -1,4 +1,4 @@
- import { useState, useRef } from "react";
+ import { useState } from "react";
 import { usePetReportContext } from "../pet_reports/usePetReportContext";
 import { usePsgcData } from "./usePsgcData";
 import { usePetReportChange } from "./usePetReportChange";
@@ -31,12 +31,12 @@ export const usePetReportForm = () => {
         handleFormChange(e, setFormData, setImageFile);
     }
 
-    const { submitPetReport, submitted } = usePetReportSubmit(dispatch);
+    const { submitPetReport, formStatus } = usePetReportSubmit(dispatch);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await submitPetReport(formData, imageFile);
+        await submitPetReport(formData, imageFile);
         
         setFormData({
             name: "",
@@ -57,7 +57,7 @@ export const usePetReportForm = () => {
         cities,
         handleChange,
         handleSubmit,
-        submitted,
+        formStatus,
         error
     };
 }

@@ -3,7 +3,7 @@ import { useImageUploader } from "./useImageUploader";
 import { compressImage } from "../../apis/imagecompression/imageCompression";
 
 export const usePetReportSubmit = (dispatch) => {
-    const [submitted, isSubmitted] = useState(false);
+    const [formStatus, setFormStatus] = useState("filling");
     const [error, setError] = useState(null);
     const { uploadImage } = useImageUploader();
 
@@ -11,6 +11,7 @@ export const usePetReportSubmit = (dispatch) => {
         console.log("FormData before submission:", formData);
             
         try {
+            setFormStatus("submitting");
             const lastSeenDate = new Date(formData.last_seen_date);
             const reportData = {...formData, last_seen_date: lastSeenDate};
             const response = await fetch("http://localhost:5000/api/petreports/", {
@@ -33,9 +34,9 @@ export const usePetReportSubmit = (dispatch) => {
                 setError(err.message)
                 return err.message;
         } finally {
-            isSubmitted("complete");
+            setFormStatus("completed");
         }
    };
 
-   return { submitPetReport, submitted , error };
+   return { submitPetReport, formStatus , error };
 }

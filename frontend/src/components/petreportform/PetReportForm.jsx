@@ -8,7 +8,7 @@ const PetReportForm = () => {
     cities,
     fileInputRef,
     handleChange,
-    submitted,
+    formStatus,
     handleSubmit,
     error
   } = usePetReportForm();
@@ -117,7 +117,7 @@ const PetReportForm = () => {
           value=""
           disabled
           >
-            Select a city
+            Select a region first
           </option>
           {cities
             .slice()
@@ -143,11 +143,15 @@ const PetReportForm = () => {
           maxLength="150"
         />
 
-        <button type="submit">Report Pet</button>
+        <button 
+          type="submit"
+          disabled={formStatus === "submitting"}>
+            Report Pet
+        </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
       <ProgressBar />
-      {submitted && (
+      {formStatus === "completed" && (
         <p>Your report has been submitted.</p>
       )}
     </div>
