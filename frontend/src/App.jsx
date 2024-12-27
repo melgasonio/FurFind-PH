@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import PetReports from './pages/PetReports';
 import ReportPet from './pages/ReportPet';
+import PetProfile from './pages/PetProfile';
 
 function App() {
 
@@ -26,7 +27,11 @@ function App() {
               <Route 
                 path="/reportpet"
                 element={<ReportPet />}
-              />            
+              />
+              <Route
+                path="/petprofile/:id"
+                element={<PetProfile />}
+              />                   
             </Routes>
           </div>
         </BrowserRouter>

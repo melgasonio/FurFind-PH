@@ -1,29 +1,18 @@
-import { useEffect, useState } from "react"
-import PetReportDetails from "../components/PetReportDetails"
+import { useEffect } from "react";
+import PetReportsGroup from "../components/PetReportsGroup";
+import { useGetPetReports } from "../hooks/pet_reports/useGetPetReports";
 
 const PetReports = () => {
-    const [petReports, setPetReports] = useState(null)
+  const { getPetReports } = useGetPetReports();
 
-    useEffect(() => {
-        const fetchPetReports = async () => {
-            const response = await fetch('http://localhost:5000/api/petreports')
-            const json = await response.json()
-
-            if (response.ok) {
-                setPetReports(json)
-            }
-        }
-
-        fetchPetReports()
-    }, [])
+  useEffect(() => {
+    getPetReports;
+  }, [getPetReports]);
+    
 
   return (
     <div className="pet-reports-page">
-        <div className="pet-reports">
-            {petReports && petReports.map((petReport) => (
-                <PetReportDetails key={petReport._id} petReport={petReport}/>
-            ))}
-        </div>
+        <PetReportsGroup/>
     </div>
   )
 }
