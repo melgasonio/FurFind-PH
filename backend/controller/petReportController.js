@@ -69,7 +69,11 @@ const updatePetReport = async (req, res) => {
         return res.status(404).json({error: 'Pet report not found'})
     } 
 
-    const petReport = await PetReports.findOneAndUpdate({_id: id})
+    const petReport = await PetReports.findOneAndUpdate(
+        {_id: id},
+        { $set: req.body },
+        { new: true }
+    );
 
     if(!petReport) {
         return res.status(400).json({error: 'Pet report not found'})

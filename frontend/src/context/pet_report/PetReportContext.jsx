@@ -14,7 +14,7 @@ export const PetReportsReducer = (state, action) => {
           }
       case 'UPDATE_PETREPORT':
           return {
-              petReports: state.petReports.map((p) => p._id === action.payload._id)
+              petReports: state.petReports.map((p) => p._id === action.payload._id ? action.payload : p)
           }
       case 'DELETE_PETREPORT':
           return {

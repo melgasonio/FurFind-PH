@@ -30,6 +30,10 @@ const petReportSchema = new Schema({
     notes: {
         type: String,
         maxlength: 150
+    },
+    flagged_counter: {
+        type: Number,
+        default: 0
     }
 })
 
