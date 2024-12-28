@@ -12,7 +12,7 @@ export const useDeleteFlaggedReport = (petProfile) => {
   
         try {
   
-          if (prevCount < 4) {
+          if (prevCount < 60) {
             const response = await fetch(`http://localhost:5000/api/petreports/${id}`, {
               method: 'PATCH',
               headers: {
