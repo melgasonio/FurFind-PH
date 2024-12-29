@@ -1,9 +1,11 @@
 import { usePetReportContext } from "./usePetReportContext";
 import { useGetPetReport } from "./useGetPetReport";
+import { useSendFlaggedEmail } from "./useSendFlaggedEmail";
 
 export const useDeleteFlaggedReport = (petProfile) => {
     const { petReports, dispatch } = usePetReportContext();
     const { setPetProfile } = useGetPetReport();
+    const { sendEmail } = useSendFlaggedEmail();
 
     const flaggedHandler = async () => {
         const id = petProfile?._id;
@@ -40,6 +42,8 @@ export const useDeleteFlaggedReport = (petProfile) => {
 
               dispatch({ type: 'DELETE_PETREPORT', payload: updatedReport });
               setPetProfile(null);
+
+              await sendEmail();
             } catch (err) {
               console.log("Error taking down report:", err)
             }

@@ -8,6 +8,7 @@ const cors = require('cors')
 const app = express()
 
 const petReportsRoutes = require('./routes/petReports')
+const flaggedEmailRoutes = require('./routes/flaggedEmail')
 
 
 // middlewares
@@ -25,6 +26,8 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/petreports', petReportsRoutes)
+
+app.use('/api/emailflagged', flaggedEmailRoutes)
 
 app.use((error, res) => {
     console.log(error)

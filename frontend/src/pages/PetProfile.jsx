@@ -23,6 +23,8 @@ const PetProfile = () => {
       )
     }
 
+
+
   return (
     <div className='pet-profile-page'>
         <img className="rounded-full w-32 h-32" src={imageURL} />
