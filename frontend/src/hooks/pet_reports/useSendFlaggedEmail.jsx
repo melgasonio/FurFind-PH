@@ -1,6 +1,6 @@
 export const useSendFlaggedEmail = () => {
 
-    const sendEmail = async () => {
+    const sendEmail = async ({ name, status, id, breed }) => {
         try {
             await fetch('http://localhost:5000/api/emailflagged/', {
                 method: 'POST',
@@ -9,9 +9,9 @@ export const useSendFlaggedEmail = () => {
                 },
                 body: JSON.stringify({
                   emailReceiver: 'soniomelga@gmail.com',
-                  subject: 'Test Email Flagged',
+                  subject: 'Your pet report post has been taken down.',
                   body: `
-                    Hello. This is a test only.
+                    Your pet report with the following information has been found to be inappropriate and has been take down.
                   `,
                 })
               });

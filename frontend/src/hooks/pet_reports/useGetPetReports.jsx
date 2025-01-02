@@ -12,5 +12,5 @@ export const useGetPetReports = () => {
         }
     };
 
-    return getPetReports();
+    return getPetReports;
 }

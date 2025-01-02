@@ -13,8 +13,9 @@ export const useDeleteFlaggedReport = (petProfile) => {
         const updateData = { flagged_counter: prevCount + 1 };
   
         try {
-  
-          if (prevCount < 60) {
+          
+          // Max report count is 30
+          if (prevCount < 4) {
             const response = await fetch(`http://localhost:5000/api/petreports/${id}`, {
               method: 'PATCH',
               headers: {
@@ -30,20 +31,29 @@ export const useDeleteFlaggedReport = (petProfile) => {
             setPetProfile(updatedReport);
           } else {
             try {
-              const response = await fetch(`http://localhost:5000/api/petreports/${id}`, {
+              const responseGet = await fetch(`http://localhost:5000/api/petreports/${id}`);
+              const jsonGet = await responseGet.json();
+              const {
+                name,
+                status,
+                breed,
+              } = jsonGet;
+
+              const responseDelete = await fetch(`http://localhost:5000/api/petreports/${id}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
                 }
               });
     
-              const updatedReport = await response.json();
+              const updatedReport = await responseDelete.json();
               console.log("Report deleted:", updatedReport);
 
               dispatch({ type: 'DELETE_PETREPORT', payload: updatedReport });
               setPetProfile(null);
 
-              await sendEmail();
+              // Send emal to owner
+              await sendEmail({ name, status, breed, id });
             } catch (err) {
               console.log("Error taking down report:", err)
             }

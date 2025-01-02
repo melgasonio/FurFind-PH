@@ -3,11 +3,11 @@ import PetReportsGroup from "../components/PetReportsGroup";
 import { useGetPetReports } from "../hooks/pet_reports/useGetPetReports";
 
 const PetReports = () => {
-  const { getPetReports } = useGetPetReports();
+  const getPetReports = useGetPetReports();
 
   useEffect(() => {
-    getPetReports;
-  }, [getPetReports]);
+    getPetReports();
+  }, []);
     
 
   return (
