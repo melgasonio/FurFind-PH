@@ -53,7 +53,7 @@ export const useDeleteFlaggedReport = (petProfile) => {
               setPetProfile(null);
 
               // Send emal to owner
-              await sendEmail({ name, status, breed, id });
+              await sendEmail({ name, status, id, breed });
             } catch (err) {
               console.log("Error taking down report:", err)
             }
