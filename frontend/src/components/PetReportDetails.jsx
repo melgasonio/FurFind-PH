@@ -8,7 +8,7 @@ const PetReportDetails = ({ petReport }) => {
 
     return (
         <div className='PetReportDetails'>
-            <Link to={'/petprofile/' + petReport._id} target="_blank">
+            <Link to={'/petprofile/' + petReport._id}>
                 <img className="rounded-full w-32 h-32" src={imageURL} />
                 <p>{petReport.name}</p>
                 <p>{petReport.status}</p>
