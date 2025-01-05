@@ -15,7 +15,7 @@ export const useDeleteFlaggedReport = (petProfile) => {
         try {
           
           // Max report count is 30
-          if (prevCount < 4) {
+          if (prevCount < 30) {
             const response = await fetch(`http://localhost:5000/api/petreports/${id}`, {
               method: 'PATCH',
               headers: {
