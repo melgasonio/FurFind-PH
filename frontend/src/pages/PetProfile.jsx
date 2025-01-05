@@ -16,14 +16,11 @@ const PetProfile = () => {
       }
     }, [petProfile, getPetImage]);
 
-
     if (!petProfile) {
       return (
         <div>Loading...</div>
       )
     }
-
-
 
   return (
     <div className='pet-profile-page'>
@@ -39,4 +36,4 @@ const PetProfile = () => {
   )
 }
 
-export default PetProfile
+export default PetProfile;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useGetPetImage } from '../hooks/pet_reports/useGetPetImage';
 import { useGetPetReport } from '../hooks/pet_reports/useGetPetReport';
 import { Link } from 'react-router-dom';
@@ -21,6 +22,17 @@ const PetReportDetails = ({ petReport }) => {
                 <p>{petReport.breed}</p>
                 <p>Last seen at: {petReport.last_seen_city}, {petReport.last_seen_region}</p>            
             </Link>
+=======
+import React from 'react'
+
+const PetReportDetails = ({ petReport }) => {
+
+    return (
+        <div className='PetReportDetails'>
+            <image src={petReport.image}></image>
+            <p>{petReport.name}</p>
+            <p>{petReport.status}</p>
+>>>>>>> parent of d94da9b (Create page per pet report)
         </div>
   )
 }
