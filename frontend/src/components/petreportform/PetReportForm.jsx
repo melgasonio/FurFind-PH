@@ -48,10 +48,10 @@ const PetReportForm = () => {
           onChange={handleChange}
           required
         >
-          <option key="lost" value="lost">
+          <option key="Lost" value="Lost">
             Lost
           </option>
-          <option key="found" value="found">
+          <option key="Found" value="Found">
             Found
           </option>
         </select>
