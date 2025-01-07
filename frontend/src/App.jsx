@@ -21,7 +21,7 @@ function App() {
                 element={<Home />}
               />
               <Route 
-                path="/petreports"
+                path="/petreports/page/:num"
                 element={<PetReports />}
               />
               <Route 

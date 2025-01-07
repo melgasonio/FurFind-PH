@@ -1,5 +1,6 @@
 import { useGetPetImage } from '../hooks/pet_reports/useGetPetImage';
 import { Link } from 'react-router-dom';
+import imagePlaceholder from '../assets/pet_profile/image_placeholder.png'
 
 const PetReportDetails = ({ petReport }) => {
     const { imageURL, getPetImage } = useGetPetImage();
@@ -9,7 +10,7 @@ const PetReportDetails = ({ petReport }) => {
     return (
         <div className='PetReportDetails'>
             <Link to={'/petprofile/' + petReport._id}>
-                <img className="rounded-full w-32 h-32" src={imageURL} />
+                <img className="rounded-full w-32 h-32" src={imageURL || imagePlaceholder} />
                 <p>{petReport.name}</p>
                 <p>{petReport.status}</p>
                 <p>{petReport.breed}</p>

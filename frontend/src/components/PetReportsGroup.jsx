@@ -1,14 +1,14 @@
 import PetReportDetails from './PetReportDetails';
-import { usePetReportContext } from '../hooks/pet_reports/usePetReportContext';
+import { useGetPage } from '../hooks/pet_reports/useGetPage';
 
 const PetReportsGroup = () => {
-    const { petReports } = usePetReportContext();
+    const { pageReports } = useGetPage();
 
     return (
         <div className="pet-reports-page">
             <div className="pet-reports">
-                {petReports && petReports.map((petReport) => (
-                    <PetReportDetails key={petReport._id} petReport={petReport} />
+                {pageReports && pageReports.map((p) => (
+                    <PetReportDetails key={p._id} petReport={p} />
                 ))}
             </div>
         </div>

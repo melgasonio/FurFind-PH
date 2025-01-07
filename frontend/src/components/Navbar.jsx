@@ -9,13 +9,13 @@ const Navbar = () => {
         <div className='nav-list'>
           <ul>
             <li className='nav-item'>
-              <Link to="/petreports">Lost & Found Pets</Link>
+              <Link to="/petreports/page/1">Lost & Found Pets</Link>
             </li>
             <li className='nav-item'>
               <Link to="/reportpet">Report a Pet</Link>
             </li>
             <li className='nav-item'>
-              <Link to="/petreports">Lost & Found Pets</Link>
+              <Link to="/petreports/page/1">Lost & Found Pets</Link>
             </li>
           </ul>
         </div>

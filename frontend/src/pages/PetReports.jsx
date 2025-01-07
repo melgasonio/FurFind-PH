@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import PetReportsGroup from "../components/PetReportsGroup";
+import PetReportsPageButtons from "../components/PetReportsPageButtons";
 import { useGetPetReports } from "../hooks/pet_reports/useGetPetReports";
+import { LastButtonContextProvider } from "../context/pet_report/LastButtonContext";
 
 const PetReports = () => {
   const getPetReports = useGetPetReports();
@@ -9,11 +11,15 @@ const PetReports = () => {
     getPetReports();
   }, []);
     
-
   return (
-    <div className="pet-reports-page">
+    <LastButtonContextProvider>
+      <div className="pet-reports-page">
         <PetReportsGroup/>
-    </div>
+        <PetReportsPageButtons />
+      </div>
+    </LastButtonContextProvider>
+
+
   )
 }
 
