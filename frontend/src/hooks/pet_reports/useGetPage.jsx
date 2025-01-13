@@ -5,8 +5,8 @@ export const useGetPage = () => {
     const { petReports } = usePetReportContext();
     const { lastClicked } = useLastButtonContext();
 
-    const startInd = 20 * (lastClicked - 1)
-    const lastInd = 20 * lastClicked
+    const startInd = 3 * (lastClicked - 1)
+    const lastInd = 3 * lastClicked
 
     const pageReports = petReports.slice(startInd, lastInd);
 

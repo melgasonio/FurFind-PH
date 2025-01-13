@@ -12,14 +12,10 @@ const PetReports = () => {
   }, []);
     
   return (
-    <LastButtonContextProvider>
-      <div className="pet-reports-page">
-        <PetReportsGroup/>
-        <PetReportsPageButtons />
-      </div>
-    </LastButtonContextProvider>
-
-
+    <div className="pet-reports-page">
+      <PetReportsGroup/>
+      <PetReportsPageButtons />
+    </div>
   )
 }
 
