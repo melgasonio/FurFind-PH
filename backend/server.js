@@ -1,14 +1,15 @@
-require('dotenv').config()
+require('dotenv').config();
 
 // dependencies
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-const petReportsRoutes = require('./routes/petReports')
-const flaggedEmailRoutes = require('./routes/flaggedEmail')
+const petReportsRoutes = require('./routes/petReports');
+const flaggedEmailRoutes = require('./routes/flaggedEmail');
+const userRoutes = require('./routes/users');
 
 
 // middlewares
@@ -16,23 +17,23 @@ app.use(cors({
     origin: 'http://localhost:5173',
     methods: 'GET,POST,PATCH,DELETE,PUT',
     credentials:  true
-}))
+}));
 
-app.use(express.json())
+app.use(express.json());
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
-})
+});
 
-app.use('/api/petreports', petReportsRoutes)
-
-app.use('/api/emailflagged', flaggedEmailRoutes)
+app.use('/api/petreports', petReportsRoutes);
+app.use('/api/emailflagged', flaggedEmailRoutes);
+app.use('/api/users', userRoutes);
 
 app.use((error, res) => {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong. Please try again later.' })
-})
+});
 
 mongoose.connect(process.env.MONGO_URI)
 
