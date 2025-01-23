@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import PetReports from './pages/PetReports';
 import ReportPet from './pages/ReportPet';
 import PetProfile from './pages/PetProfile';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
 
@@ -31,7 +33,15 @@ function App() {
               <Route
                 path="/petprofile/:id"
                 element={<PetProfile />}
-              />                   
+              />
+              <Route
+                path="/login" 
+                element={<Login />}
+              />
+              <Route
+                path="/signup" 
+                element={<Signup />}
+              />               
             </Routes>
           </div>
         </BrowserRouter>

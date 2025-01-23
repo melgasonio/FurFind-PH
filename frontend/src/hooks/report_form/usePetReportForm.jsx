@@ -5,7 +5,7 @@ import { usePetReportChange } from "./usePetReportChange";
 import { usePetReportSubmit } from "./usePetReportSubmit";
 
 export const usePetReportForm = () => {
-    const { dispatch } =usePetReportContext();
+    const { dispatch } = usePetReportContext();
 
     // Local states
     const [formData, setFormData] = useState({

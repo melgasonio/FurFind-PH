@@ -26,7 +26,7 @@ const createUser = async (req, res) => {
     }
 };
 
-const getUser = async (req, res) => {
+const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     try { 
@@ -77,8 +77,8 @@ const deleteUser = async (req, res) => {
     }
 }
 
-module.exports = {
-    getUser,
+module.exports = {                                                                                                                                                                                                                                                                                                                                                                   
+    loginUser,
     createUser,
     updateUser,
     deleteUser
