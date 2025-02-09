@@ -19,6 +19,7 @@ export const useLoginForm = () => {
         try {
             const response = await fetch("http://localhost:5000/api/users/login/", {
                 method: "POST",
+                credentials: "include",
                 body: JSON.stringify(user),
                 headers: {"Content-Type": "application/json"}
             })
