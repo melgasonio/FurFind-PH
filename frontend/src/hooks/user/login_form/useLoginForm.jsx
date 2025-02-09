@@ -26,9 +26,7 @@ export const useLoginForm = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
-            const json = await response.json();
-            console.log(json);
+        
         } catch (error) {
             console.error("Login failed:", error.message);
         }

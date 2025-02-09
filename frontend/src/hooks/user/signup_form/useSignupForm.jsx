@@ -26,7 +26,7 @@ export const useSignupForm = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
+;
         } catch (error) {
             console.error("Sign up failed:", error.message)
         }

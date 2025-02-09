@@ -1,5 +1,5 @@
 import PetReportDetails from './PetReportDetails';
-import { useGetPage } from '../hooks/pet_reports/useGetPage';
+import { useGetPage } from '../../hooks/pet_reports/useGetPage';
 
 const PetReportsGroup = () => {
     const { pageReports } = useGetPage();

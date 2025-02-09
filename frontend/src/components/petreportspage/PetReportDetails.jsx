@@ -1,6 +1,6 @@
-import { useGetPetImage } from '../hooks/pet_reports/useGetPetImage';
+import { useGetPetImage } from '../../hooks/pet_reports/useGetPetImage';
 import { Link } from 'react-router-dom';
-import imagePlaceholder from '../assets/pet_profile/image_placeholder.png'
+import imagePlaceholder from '../../assets/pet_profile/image_placeholder.png'
 
 const PetReportDetails = ({ petReport }) => {
     const { imageURL, getPetImage } = useGetPetImage();
