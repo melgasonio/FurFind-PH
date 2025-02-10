@@ -24,6 +24,13 @@ const getPetReport = async (req, res) => {
 }
 
 const createPetReport = async (req, res) => {
+    // Only authenticated users (not guests) can submit pet reports
+    const token = req.cookies.authToken;
+
+    if (!token) {
+        return res.status(401).json({ message: "Unauthorized" })
+    }
+
     const {
         name,
         status,
@@ -44,7 +51,10 @@ const createPetReport = async (req, res) => {
             last_seen_city,
             notes 
         })
-        res.status(200).json(petReport)
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        res.status(200).json(petReport, decoded)
     } catch {
         res.status(400).json({error: 'Error submitting report. Try again later.'})
     }

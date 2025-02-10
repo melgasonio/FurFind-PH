@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 });
+
+app.use(cookieParser);
 
 app.use('/api/petreports', petReportsRoutes);
 app.use('/api/emailflagged', flaggedEmailRoutes);

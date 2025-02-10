@@ -16,6 +16,7 @@ export const usePetReportSubmit = (dispatch) => {
             const reportData = {...formData, last_seen_date: lastSeenDate};
             const response = await fetch("http://localhost:5000/api/petreports/", {
                 method: "POST",
+                credentials: "include",
                 body: JSON.stringify(reportData),
                 headers: { "Content-Type": "application/json" },
             });
