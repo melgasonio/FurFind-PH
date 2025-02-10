@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -14,14 +14,16 @@ const userRoutes = require('./routes/users');
 
 
 // middlewares
-app.use(express.json());
-app.use(cookieParser);
+app.use(cookieParser());
+
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: 'GET,POST,PATCH,DELETE,PUT',
-    credentials:  true
+    credentials:  true,
+    allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
+app.use(express.json());
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)

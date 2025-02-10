@@ -35,11 +35,8 @@ const createPetReport = async (req, res) => {
         notes 
     } = req.body
 
-    const userId = req.user.userId;
-
     try {
         const petReport = await PetReports.create({
-            userId,
             name,
             status,
             breed,

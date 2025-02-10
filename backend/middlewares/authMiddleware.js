@@ -13,6 +13,7 @@ const authenticateUser = (req, res, next) => {
         }
 
         req.user = decoded;
+        console.log("Authenticated user:", decoded); 
         next();
     })
 };
