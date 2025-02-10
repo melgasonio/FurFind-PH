@@ -64,6 +64,12 @@ const loginUser = async (req, res) => {
     }
 };
 
+// Logout User
+const logoutUser = async (req, res) => {
+    res.clearCookie("authToken", { httpOnly: true, sameSite: "Strict", secure: process.env.NODE_ENV === "production" });
+    res.json({ message: "Logged out" });
+};
+
 // Update User
 const updateUser = async (req, res) => {
     const { email, ...updateFields } = req.body;
@@ -95,6 +101,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
     createUser,
     loginUser,
+    logoutUser,
     updateUser,
     deleteUser,
 };

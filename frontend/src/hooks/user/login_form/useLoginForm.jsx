@@ -12,7 +12,7 @@ export const useLoginForm = () => {
         }));
     }
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         console.log(user)
 
@@ -27,6 +27,8 @@ export const useLoginForm = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+
+            console.log("Logged in successfully")
         
         } catch (error) {
             console.error("Login failed:", error.message);
@@ -35,5 +37,5 @@ export const useLoginForm = () => {
 
     }
 
-    return { handleChange, handleSubmit }
+    return { handleChange, handleLogin }
 }

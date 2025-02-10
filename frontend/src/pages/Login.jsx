@@ -3,11 +3,11 @@ import { useLoginForm } from '../hooks/user/login_form/useLoginForm';
 import { useUserContext } from '../hooks/user/useUserContext';
 
 const Login = () => {
-    const { handleChange, handleSubmit } = useLoginForm();
+    const { handleChange, handleLogin } = useLoginForm();
     const { user } = useUserContext();
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
             <label htmlFor='email'>Email</label>
             <input 
                 id='email'
