@@ -6,6 +6,7 @@ const {
     deletePetReport,
     updatePetReport
 } = require('../controller/petReportController')
+const authenticateUser = require('../middlewares/authMiddleware');
 
 const router = express.Router()
 
@@ -13,10 +14,10 @@ router.get('/', getPetReports)
 
 router.get('/:id', getPetReport)
 
-router.post('/', createPetReport)
+router.post('/', authenticateUser, createPetReport)
 
-router.delete('/:id', deletePetReport)
+router.delete('/:id', authenticateUser, deletePetReport)
 
-router.patch('/:id', updatePetReport)
+router.patch('/:id', authenticateUser, updatePetReport)
 
 module.exports = router

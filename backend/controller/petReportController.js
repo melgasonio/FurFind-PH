@@ -1,4 +1,4 @@
-const PetReports = require('../models/petReportModel')
+const PetReports = require('../models/petReportModel');
 
 const mongoose = require('mongoose')
 
@@ -24,12 +24,6 @@ const getPetReport = async (req, res) => {
 }
 
 const createPetReport = async (req, res) => {
-    // Only authenticated users (not guests) can submit pet reports
-    const token = req.cookies.authToken;
-
-    if (!token) {
-        return res.status(401).json({ message: "Unauthorized" })
-    }
 
     const {
         name,
@@ -41,8 +35,11 @@ const createPetReport = async (req, res) => {
         notes 
     } = req.body
 
+    const userId = req.user.userId;
+
     try {
         const petReport = await PetReports.create({
+            userId,
             name,
             status,
             breed,
@@ -52,9 +49,8 @@ const createPetReport = async (req, res) => {
             notes 
         })
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        res.status(200).json(petReport, decoded)
+        res.status(200).json(petReport)
     } catch {
         res.status(400).json({error: 'Error submitting report. Try again later.'})
     }
