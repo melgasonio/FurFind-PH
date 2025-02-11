@@ -10,7 +10,7 @@ const petReportSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ["Lost", "Found"]
+        enum: ["lost", "found"]
     },
     breed: {
         type: String,

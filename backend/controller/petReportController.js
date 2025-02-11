@@ -46,9 +46,9 @@ const createPetReport = async (req, res) => {
             notes 
         })
 
-
         res.status(200).json(petReport)
-    } catch {
+    } catch (err) {
+        console.error("Error creating pet report:", err);
         res.status(400).json({error: 'Error submitting report. Try again later.'})
     }
 }

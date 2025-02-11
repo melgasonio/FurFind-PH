@@ -14,15 +14,12 @@ const userRoutes = require('./routes/users');
 
 
 // middlewares
-app.use(cookieParser());
-
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: 'GET,POST,PATCH,DELETE,PUT',
-    credentials:  true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials:  true
 }));
-
+app.use(cookieParser());
 app.use(express.json());
 
 app.use((req, res, next) => {
