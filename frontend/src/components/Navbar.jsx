@@ -1,39 +1,86 @@
-import { Link } from 'react-router-dom'
-import { useLastButtonContext } from '../hooks/pet_reports/useLastButtonContext';
-import { useLogoutUser } from '../hooks/user/useLogoutUser';
+import { Link } from "react-router-dom";
 
+import Logo from "./Logo";
+
+import { useLastButtonContext } from "../hooks/pet_reports/useLastButtonContext";
+import { useLogoutUser } from "../hooks/user/useLogoutUser";
+import { useNavToggle } from "../hooks/navigation/useNavToggle";
+
+import closeIcon from "../assets/close-icon.svg";
+import hamburgerIcon from "../assets/hamburger-icon.svg";
 
 const Navbar = () => {
   const { lastClicked } = useLastButtonContext();
   const { handleLogout } = useLogoutUser();
+  const { isNavOpen, setIsNavOpen } = useNavToggle();
+
+  const navLinks = [
+    { label: "Home", path: "/" },
+    { label: "Lost & Found Pets", path: `/petreports/page/${lastClicked}` },
+    { label: "Report a Pet", path: "/reportpet" },
+    { label: "Login", path: "/login", className: "font-bold" },
+    { label: "Sign Up", path: "/signup", className: "font-bold" },
+  ];
 
   return (
-    
-    <div className='container'>
-        <Link to="/">
-            <h1>FurFind PH</h1>
-        </Link>
-        <div className='nav-list'>
-          <ul>
-            <li className='nav-item'>
-              <Link to={`/petreports/page/${lastClicked}`}>Lost & Found Pets</Link>
-            </li>
-            <li className='nav-item'>
-              <Link to="/reportpet">Report a Pet</Link>
-            </li>
-            <li className='nav-item'>
-              <Link to={'/login'}>Login</Link>
-            </li>
-            <li className='nav-item'>
-              <Link to={'/signup'}>Sign Up</Link>
-            </li>
-            <li className='nav-item' onClick={handleLogout}>
-              <Link to={'/'}>Logout</Link>
-            </li>
-          </ul>
+    isNavOpen ? (
+      <div className='bg-white-100 h-screen w-full p-[42px] flex flex-col'>
+        {/* Header Section */}
+        <div className="h-[52px] px-[4px] flex justify-between items-center border-b-[1px] border-black-100">
+          <Link to="/">
+            <Logo />
+          </Link>
+          <img
+            onClick={() => setIsNavOpen(false)}
+            src={closeIcon}
+            alt="Close Menu Button"
+            className="w-[16px] h-[16px] cursor-pointer"
+          />
         </div>
-    </div>
-  )
-}
 
-export default Navbar
+        {/* Navigation Links */}
+        <div className="h-full px-[8px] py-[24px]">
+          <div className="px-[4px]">
+            <ul className="flex flex-col gap-[12px]">
+              {navLinks.map(({ label, path, className }) => (
+                <li key={path} className={className || ""}>
+                  <Link
+                    to={path}
+                    className="focus:text-coral-700 hover:text-coral-600"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+              <li className="hidden">
+                <button
+                  onClick={handleLogout}
+                  className="focus:text-coral-700 hover:text-coral-600"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>      
+    ) : (
+      // Render if navigation is closed
+      <div className="fixed top-0 right-0 left-0 mb- flex items-center px-[8px] py-[4px] w-full h-[48px] bg-white-100">
+        <div className="fixed top-0 left-0 px-[8px] py-[8px]">
+          <img
+              onClick={() => setIsNavOpen(true)}
+              src={hamburgerIcon}
+              alt="Open Menu Button"
+              className="w-[16px] h-[16px] cursor-pointer"
+          />
+        </div>
+        <Link className="flex justify-center items-center w-full" to="/">
+          <Logo />
+        </Link>
+      </div>
+    )
+  );
+};
+
+export default Navbar;

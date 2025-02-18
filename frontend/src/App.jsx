@@ -16,13 +16,13 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Navbar />
-          <div className='pages'>
-            <Routes>
+          <div className=''>
+            <Routes className=''>
               <Route 
                 path="/"
                 element={<Home />}
               />
-              <Route 
+              <Route
                 path="/petreports/page/:num"
                 element={<PetReports />}
               />

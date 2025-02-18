@@ -1,1 +1,70 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+@theme {
+    --color-coral-800: hsl(0, 60%, 60%);
+    --color-coral-700: hsl(0, 90%, 71%);
+    --color-coral-600: hsl(0, 90%, 71%, 0.92);
+    --color-coral-500: hsl(0, 70%, 75%);
+    --color-coral-400: hsl(0, 70%, 75%, 0.92);
+    --color-coral-300: hsl(0, 77%, 61%);
+    --color-coral-200: hsl(0, 77%, 61%, 0.44);
+    --color-coral-100: hsl(0, 68%, 52%);
+
+    --color-blue-600: hsl(195, 85%, 61%);
+    --color-blue-400: hsl(195, 61%, 78%);
+    --color-blue-200: hsl(195, 40%, 95%);
+    --color-blue-100: hsl(195, 32%, 98%);
+
+    --color-cream-200: hsl(36, 100%, 94%);
+
+    --color-black-700: hsl(0, 0%, 24%);
+    --color-black-600: hsl(0, 2%, 31%);
+    --color-black-500: hsl(0, 0%, 52%);
+    --color-black-400: hsl(0, 0%, 60%);
+    --color-black-300: hsl(0, 0%, 75%);
+    --color-black-200: hsl(0, 0%, 80%);
+    --color-black-100: hsl(0, 0%, 90%);
+
+    --color-white-200: hsl(0, 7%, 95%);
+    --color-white-100: hsl(0, 0%, 100%);
+
+    --font-raleway: Raleway, sans-serif;
+    --font-lato: Lato, sans-serif;
+
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+
+    --text-2xl: 64px;
+    --text-xl: 48px;
+    --text-l: 32px;
+    --text-md: 24px;
+    --text-sm: 16px;
+    --text-xsm: 12px;
+    --text-logo: 22px;
+
+    --gap-2xl: 64px;
+    --gap-xl: 48px;
+    --gap-l: 32px;
+    --gap-md: 24px;
+    --gap-sm: 16px;
+    --gap-xsm: 12px;
+    --gap-logo: 22px;
+
+    --size-2xl: 64px;
+    --size-xl: 48px;
+    --size-l: 32px;
+    --size-md: 24px;
+    --size-sm: 16px;
+    --size-xsm: 12px;
+    --size-logo: 22px;
+}
