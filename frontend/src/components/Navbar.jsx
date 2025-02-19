@@ -4,7 +4,7 @@ import Logo from "./Logo";
 
 import { useLastButtonContext } from "../hooks/pet_reports/useLastButtonContext";
 import { useLogoutUser } from "../hooks/user/useLogoutUser";
-import { useNavToggle } from "../hooks/navigation/useNavToggle";
+import { useNavigationContext } from "../hooks/navigation/useNavigationContext";
 
 import closeIcon from "../assets/close-icon.svg";
 import hamburgerIcon from "../assets/hamburger-icon.svg";
@@ -12,7 +12,7 @@ import hamburgerIcon from "../assets/hamburger-icon.svg";
 const Navbar = () => {
   const { lastClicked } = useLastButtonContext();
   const { handleLogout } = useLogoutUser();
-  const { isNavOpen, setIsNavOpen } = useNavToggle();
+  const { isNavOpen, setIsNavOpen } = useNavigationContext();
 
   const navLinks = [
     { label: "Home", path: "/" },
@@ -66,13 +66,13 @@ const Navbar = () => {
       </div>      
     ) : (
       // Render if navigation is closed
-      <div className="fixed top-0 right-0 left-0 mb- flex items-center px-[8px] py-[4px] w-full h-[48px] bg-white-100">
-        <div className="fixed top-0 left-0 px-[8px] py-[8px]">
+      <div className="fixed top-0 left-0 right-0 w-full h-[48px] bg-white-100 shadow-md flex items-center px-[8px] py-[4px] z-50">
+        <div className="absolute left-0 px-[8px] py-[8px]">
           <img
-              onClick={() => setIsNavOpen(true)}
-              src={hamburgerIcon}
-              alt="Open Menu Button"
-              className="w-[16px] h-[16px] cursor-pointer"
+            onClick={() => setIsNavOpen(true)}
+            src={hamburgerIcon}
+            alt="Open Menu Button"
+            className="w-[16px] h-[16px] cursor-pointer"
           />
         </div>
         <Link className="flex justify-center items-center w-full" to="/">
