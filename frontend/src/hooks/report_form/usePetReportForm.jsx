@@ -10,7 +10,7 @@ export const usePetReportForm = () => {
     // Local states
     const [formData, setFormData] = useState({
       name: "",
-      status: "lost",
+      status: "Lost",
       breed: "",
       last_seen_date: "",
       last_seen_region: "",

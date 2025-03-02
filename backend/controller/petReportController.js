@@ -32,7 +32,9 @@ const createPetReport = async (req, res) => {
         last_seen_date,
         last_seen_region,
         last_seen_city,
-        notes 
+        notes,
+        owner_id,
+        created_at
     } = req.body
 
     try {
@@ -43,7 +45,9 @@ const createPetReport = async (req, res) => {
             last_seen_date,
             last_seen_region,
             last_seen_city,
-            notes 
+            notes,
+            owner_id,
+            created_at
         })
 
         res.status(200).json(petReport)

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // Helper function to generate JWT 
 const generateToken = (userId) => {
-    return jwt.sign({ userId, role: "user" }, process.env.JWT_SECRET, { expiresIn: "1h" })
+    return jwt.sign({ userId, role: "user" }, process.env.JWT_SECRET)
 }
 
 // Helper function to set authentication cookie
@@ -13,8 +13,7 @@ const setAuthCookie = (res, token) => {
     res.cookie("authToken", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
-        maxAge: 3600000, // 1 hour       
+        sameSite: "Strict"
     })
 }
 
@@ -58,7 +57,7 @@ const loginUser = async (req, res) => {
         const token = generateToken(user._id);
         setAuthCookie(res, token);
 
-        res.status(200).json({ message: "Login successful", userId: user._id });
+        res.status(200).json({ message: "Login successful", user});
     } catch (error) {
         res.status(500).json({ error: error.message || "Error logging in. Please try again." });
     }

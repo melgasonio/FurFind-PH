@@ -1,12 +1,17 @@
 import { useUserContext } from "../useUserContext";
+import { useState } from "react";
 
 export const useLoginForm = () => {
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    });
     const { user, setUser } = useUserContext();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        setUser((prevData) => ({
+        setForm((prevData) => ({
             ...prevData,
             [name]: value
         }));
@@ -14,13 +19,12 @@ export const useLoginForm = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        console.log(user)
 
         try {
             const response = await fetch("http://localhost:5000/api/users/login/", {
                 method: "POST",
                 credentials: "include",
-                body: JSON.stringify(user),
+                body: JSON.stringify(form),
                 headers: {"Content-Type": "application/json"}
             })
 
@@ -28,14 +32,15 @@ export const useLoginForm = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            console.log("Logged in successfully")
-        
+            const json = await response.json();
+            const userObj = json.user;
+
+            setUser(userObj)
+
         } catch (error) {
             console.error("Login failed:", error.message);
         }
-
-
     }
 
-    return { handleChange, handleLogin }
+    return { handleChange, handleLogin, form }
 }

@@ -1,4 +1,5 @@
 import { usePetReportContext } from "./usePetReportContext";
+import { useQuery } from "@tanstack/react-query"
 
 export const useGetPetReports = () => {
     const { dispatch } = usePetReportContext();
@@ -12,5 +13,10 @@ export const useGetPetReports = () => {
         }
     };
 
-    return getPetReports;
+    return useQuery({
+        queryKey: ["petReports"],
+        queryFn: getPetReports,
+        staleTime: 1000 * 60 * 10, // Cache for 10 minutes,
+        cacheTime: 1000 * 60 * 15, // Keep cache for 15 minutes before garbage collection
+    })
 }

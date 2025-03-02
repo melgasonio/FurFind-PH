@@ -9,7 +9,17 @@ import PetProfile from './pages/PetProfile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
+// hooks
+import { useEffect } from 'react';
+import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
+
 function App() {
+
+  const { refetch } = useGetPetReports();
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <>
