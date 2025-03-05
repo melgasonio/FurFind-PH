@@ -1,37 +1,13 @@
-import { createContext, useReducer } from "react";
+import { createContext } from "react";
+import { useState } from "react";
 
 export const PetReportContext = createContext();
 
-export const PetReportsReducer = (state, action) => {
-  switch (action.type) {
-      case 'SET_PETREPORTS':
-          return {
-              petReports: action.payload
-          }
-      case 'CREATE_PETREPORT':
-          return {
-              petReports: [action.payload, ...state.petReports]
-          }
-      case 'UPDATE_PETREPORT':
-          return {
-              petReports: state.petReports.map((p) => p._id === action.payload._id ? action.payload : p)
-          }
-      case 'DELETE_PETREPORT':
-          return {
-              petReports: state.petReports.filter((p) => p._id !== action.payload._id)
-          }
-      default:
-          return state
-  }
-}
-
 export const PetReportContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(PetReportsReducer, {
-        petReports: []
-    })
+    const [petReports, setPetReports] = useState([]);
 
   return (
-    <PetReportContext.Provider value={{...state, dispatch}}>
+    <PetReportContext.Provider value={{ petReports, setPetReports }}>
         {children}
     </PetReportContext.Provider>
   )

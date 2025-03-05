@@ -2,6 +2,7 @@ import { usePetReportContext } from "./usePetReportContext";
 import { useLastButtonContext } from "./useLastButtonContext";
 
 export const useGetPage = () => {
+
     const { petReports } = usePetReportContext();
     const { lastClicked } = useLastButtonContext();
 

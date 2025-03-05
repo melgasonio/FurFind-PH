@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // pages & components
 import Home from './pages/Home';
@@ -8,18 +9,17 @@ import ReportPet from './pages/ReportPet';
 import PetProfile from './pages/PetProfile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
-// hooks
-import { useEffect } from 'react';
 import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
 
 function App() {
-
-  const { refetch } = useGetPetReports();
-
+  const { getPetReports } = useGetPetReports();
   useEffect(() => {
-    refetch();
+    const fetchReports = async () => {
+        await getPetReports();
+    };
+    fetchReports()
   }, []);
+
 
   return (
     <>

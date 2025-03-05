@@ -1,17 +1,20 @@
-import React from 'react'
 import BodyContainer from '../components/BodyContainer'
 import LargeButton from '../components/LargeButton';
-import PetReportDetails from '../components/petreportspage/PetReportDetails';
+import Carousel from '../components/home/Carousel';
+import PetReportDetails from '../components/petreportspage/PetReportDetails'
 
 import pawIcon from '../assets/paw.png';
 import pawsBg from '../assets/paws-bg.png';
-import recentPet from '../assets/most-recent-pholder.png'
-
-import { useNavigationContext } from '../hooks/navigation/useNavigationContext';
 import hero from '../assets/hero.png';
 
+import { useNavigationContext } from '../hooks/navigation/useNavigationContext';
+import { useGetRecentReports } from '../hooks/pet_reports/useGetRecentReports';
+
 const Home = () => {
+
   const { isNavOpen } = useNavigationContext();
+  const { recentReports } = useGetRecentReports();
+
   return (
     <div className={isNavOpen ? "hidden" : "font-lato"}>
       <BodyContainer>
@@ -49,16 +52,7 @@ const Home = () => {
           <div className='flex flex-col items-center justify-items-stretch gap-[var(--size-md)]'>
             <h2 className='text-black-600 text-md font-semibold'>Most Recent</h2>
             {/* Carousel */}
-            <div id="pet-carousel" className='' data-carousel="slide">
-              {/* Wrapper */}
-              <div className="relative h-56 overflow-hidden">
-                {/* Insert 3 Pet Reports Details component here. Props: petReports 3 most recent. */}
-                {/* <PetReportDetails />
-                <PetReportDetails />
-                <PetReportDetails /> */}
-              </div>
-              {/* Slider Indicators/Ellipsis */}
-            </div>
+            <Carousel />
             <button>View All</button>
           </div>
         </div>
