@@ -1,4 +1,4 @@
-import { act, useState } from "react";
+import { useEffect, useState } from "react";
 
 import PetReportDetails from "../petreportspage/PetReportDetails";
 import { useGetRecentReports } from "../../hooks/pet_reports/useGetRecentReports";
@@ -9,6 +9,18 @@ const Carousel = () => {
   const { recentReports } = useGetRecentReports();
   const slidesLength = recentReports.length;
   const dotsArray = Array.from({ length: slidesLength }, (_, i) => i + 1)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (activeSlide === slidesLength) {
+        setActiveSlide((p) => 1);  
+      } else {
+        setActiveSlide(activeSlide + 1);
+      }
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [activeSlide])
 
 
   // Showslide function incase activeSlide becomes less than or greater than acceptable values when next/previous buttons are controlled
@@ -29,7 +41,6 @@ const Carousel = () => {
       setActiveSlide(activeSlide + 1);    
     }
   }
-
 
   return (
     <div>

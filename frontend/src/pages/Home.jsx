@@ -46,7 +46,7 @@ const Home = () => {
         {/* Most Recent */}
         <div className='relative flex flex-col items-center pt-[48px] px-[var(--size-xsm)] pb-[var(--size-md)]'>
           <img 
-            className='absolute top-[0px] w-[480px] h-auto'
+            className='absolute top-[0px] w-[480px] h-auto z-0'
             src={pawsBg}
           />
           <div className='flex flex-col items-center justify-items-stretch gap-[var(--size-md)]'>
