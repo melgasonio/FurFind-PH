@@ -5,7 +5,7 @@ import { usePetReportChange } from "./usePetReportChange";
 import { usePetReportSubmit } from "./usePetReportSubmit";
 
 export const usePetReportForm = () => {
-    const { dispatch } = usePetReportContext();
+    const { setPetReports } = usePetReportContext();
 
     // Local states
     const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ export const usePetReportForm = () => {
         handleFormChange(e, setFormData, setImageFile);
     }
 
-    const { submitPetReport, formStatus } = usePetReportSubmit(dispatch);
+    const { submitPetReport, formStatus } = usePetReportSubmit(setPetReports);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

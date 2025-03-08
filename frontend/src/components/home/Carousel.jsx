@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import PetReportDetails from "../petreportspage/PetReportDetails";
+
 import { useGetRecentReports } from "../../hooks/pet_reports/useGetRecentReports";
 
 const Carousel = () => {
@@ -55,12 +56,12 @@ const Carousel = () => {
 
         {/* Next and previous buttons */}
           <a 
-            className="cursor-pointer absolute top-[50%] w-auto mt-[-22px] p-[16px] bg-white-100 text-[18px] font-bold" 
+            className="cursor-pointer absolute top-[50%] w-auto mt-[-22px] p-[16px] bg-white-100 opacity-50 hover:opacity-25 text-[18px] font-bold rounded-[var(--size-xsm)]" 
             onClick={handlePrevClick}>
               &#10094;
           </a>
           <a 
-            className="cursor-pointer absolute top-[50%] right-[0] w-auto mt-[-22px] p-[16px] bg-white-100 text-[18px] font-bold" onClick={handleNextClick}>
+            className="cursor-pointer absolute top-[50%] right-[0] w-auto mt-[-22px] p-[16px] bg-white-100 opacity-50 hover:opacity-25 text-[18px] font-bold rounded-[var(--size-xsm)]" onClick={handleNextClick}>
               &#10095;
           </a>  
       </div>
@@ -71,8 +72,8 @@ const Carousel = () => {
           <span 
             key={d} 
             className={activeSlide === d ? 
-              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] bg-[#753131] rounded-[50%] inline-block" : 
-              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] bg-[#bbb] rounded-[50%] inline-block"} 
+              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] bg-black-600 rounded-[50%] inline-block" : 
+              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] border-1 border-black-500 rounded-[50%] inline-block"} 
             onClick={() => setActiveSlide(d)}>
           </span>
         )}

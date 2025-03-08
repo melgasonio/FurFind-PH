@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useImageUploader } from "./useImageUploader";
 import { compressImage } from "../../apis/imagecompression/imageCompression";
 import { useUserContext } from "../user/useUserContext";
+import { usePetReportContext } from "../pet_reports/usePetReportContext";
 
-export const usePetReportSubmit = (dispatch) => {
+export const usePetReportSubmit = (setReports) => {
     const [formStatus, setFormStatus] = useState("filling");
     const [error, setError] = useState(null);
     const { uploadImage } = useImageUploader();
     const { user } = useUserContext();
+    const { petReports } = usePetReportContext();
 
     const submitPetReport = async (formData, imageFile) => {      
         try {
@@ -37,7 +39,7 @@ export const usePetReportSubmit = (dispatch) => {
                 const compressedImage = await compressImage(imageFile);
                 await uploadImage(compressedImage, formData.status, _id);
             }
-            dispatch({ type: "CREATE_REPORT", payload: {...formData, _id} });
+            setReports(...petReports, reportData);
         } catch (err) {
                 console.error("Error in form submission:", err)
                 setError(err.message)

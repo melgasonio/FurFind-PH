@@ -6,8 +6,8 @@ import { useLastButtonContext } from "../hooks/pet_reports/useLastButtonContext"
 import { useLogoutUser } from "../hooks/user/useLogoutUser";
 import { useNavigationContext } from "../hooks/navigation/useNavigationContext";
 
-import closeIcon from "../assets/close-icon.svg";
-import hamburgerIcon from "../assets/hamburger-icon.svg";
+import closeIcon from "../assets/navigation/close-icon.svg";
+import hamburgerIcon from "../assets/navigation/hamburger-icon.svg";
 
 const Navbar = () => {
   const { lastClicked } = useLastButtonContext();

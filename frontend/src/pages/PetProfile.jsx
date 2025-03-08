@@ -3,7 +3,7 @@ import { useGetPetImage } from '../hooks/pet_reports/useGetPetImage';
 import { useEffect } from 'react';
 import { useDeleteFlaggedReport } from '../hooks/pet_reports/useDeleteFlaggedReport';
 import { usePetProfileContext } from '../hooks/pet_reports/usePetProfileContext';
-import imagePlaceholder from '../assets/pet_profile/image_placeholder.png'
+import imagePlaceholder from '../assets/pet_profile/most-recent-pholder.png'
 
 const PetProfile = () => {
   const { getPetProfile } = useGetPetReport();
