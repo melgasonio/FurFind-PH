@@ -32,11 +32,11 @@ const Home = () => {
           <div className='flex flex-col items-center pt-[var(--size-xl)] px-[var(--size-xsm)] pb-[var(--size-l)]'>
             <img
               src={hero}
-              className='w-full mb-[var(--size-md)]'
+              className='w-[344px] mb-[var(--size-sm)]'
               alt='FurFind Hero Image'
             />
             <div className='flex flex-col mb-[var(--size-sm)]'>
-              <h1 className='text-l text-white-100 text-center font-bold leading-none mb-[var(--size-xsm)]'>Report lost & found pets on FurFind PH</h1>
+              <h1 className='text-l text-white-100 text-center font-black leading-none mb-[var(--size-xsm)] text-balance'>REUNITING PETS & OWNERS</h1>
               <p className='text-center text-white-200 align-center'>Take action now. Report lost or found pets and help bring them home faster. Every second counts. Make a difference today.</p>
             </div>
             <LargeButton innerHTML={"Report a Pet"} />
@@ -53,12 +53,12 @@ const Home = () => {
           <p className='text-center text-black-500 align-center'>Growing community of people helping owners reunite with their missing pets in the Philippines</p>
         </div>
         {/* Most Recent */}
-        <div className='relative flex flex-col items-center pt-[var(--size-xl)] px-[var(--size-xsm)] pb-[var(--size-l)]'>
+        <div className='relative'>
           <img 
-            className='absolute top-[0px] w-[480px] h-auto z-0'
+            className='absolute top-[0px] w-[480px] h-auto z-[-1] opacity-50'
             src={pawsBg}
           />
-          <div className='flex flex-col items-center justify-items-stretch gap-[var(--size-sm)] z-1'>
+          <div className='flex flex-col items-center justify-items-stretch gap-[var(--size-sm)] pt-[var(--size-xl)] px-[var(--size-xsm)] pb-[var(--size-l)] z-1'>
             <h2 className='text-black-600 text-md font-semibold'>Most Recent</h2>
             <div className='flex flex-col items-center'>
               {/* Carousel */}
@@ -71,7 +71,7 @@ const Home = () => {
         <div className='flex flex-col items-center bg-cream-100 pt-[var(--size-xl)] px-[var(--size-xsm)] pb-[var(--size-l)]'>
           <h2 className='text-black-600 text-l font-semibold mb-[var(--size-sm)]'>Become a Pet Hero</h2>
           <img className='mb-[var(--size-sm)]' src={petHero}/>
-          <p className='text-center text-black-500 align-center mb-[var(--size-sm)]'>Join FurFind PH to help reunite lost pets with their families. Sign up today and be a hero for pets in need!</p>
+          <p className='text-center text-black-500 align-center mb-[var(--size-sm)] text-balance'>Join FurFind PH to help reunite lost pets with their families. Sign up today and be a hero for pets in need!</p>
           <NormalButton className='' innerHTML={"Be a Pet Hero"} />
         </div>
         {/* Footer */}

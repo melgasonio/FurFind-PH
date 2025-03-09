@@ -72,8 +72,8 @@ const Carousel = () => {
           <span 
             key={d} 
             className={activeSlide === d ? 
-              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] bg-black-600 rounded-[50%] inline-block" : 
-              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] border-1 border-black-500 rounded-[50%] inline-block"} 
+              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] bg-black-500 rounded-[50%] inline-block" : 
+              "cursor-pointer h-[15px] w-[15px] my-[12px] mx-[2px] border-1 border-black-400 rounded-[50%] inline-block"} 
             onClick={() => setActiveSlide(d)}>
           </span>
         )}

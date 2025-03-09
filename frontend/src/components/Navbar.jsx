@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     isNavOpen ? (
-      <div className='bg-white-100 h-screen w-full p-[42px] flex flex-col'>
+      <div className='bg-white-100 h-screen w-full p-[42px] flex flex-col duration-200 ease-in-out'>
         {/* Header Section */}
         <div className="h-[52px] px-[4px] flex justify-between items-center border-b-[1px] border-black-100">
           <Link to="/">

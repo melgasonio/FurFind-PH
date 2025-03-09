@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <div className="">
+      <div className="scroll-smooth">
         <BrowserRouter>
           <Navbar />
           <div className=''>
