@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import BodyContainer from '../components/BodyContainer'
 import LargeButton from '../components/buttons/LargeButton';
 import NormalButton from '../components/buttons/NormalButton';
@@ -14,12 +16,10 @@ import xIcon from '../assets/footer/x-icon.png';
 
 
 import { useNavigationContext } from '../hooks/navigation/useNavigationContext';
-import { useGetRecentReports } from '../hooks/pet_reports/useGetRecentReports';
 
 const Home = () => {
 
   const { isNavOpen } = useNavigationContext();
-  const { recentReports } = useGetRecentReports();
 
   const date = new Date();
   const yearPresent = date.getFullYear();
@@ -28,18 +28,20 @@ const Home = () => {
     <div className={isNavOpen ? "hidden" : "font-lato"}>
       <BodyContainer>
         {/* Hero Section */}
-        <div className=' bg-coral-600'>
-          <div className='flex flex-col items-center pt-[var(--size-xl)] px-[var(--size-xsm)] pb-[var(--size-l)]'>
+        <div className=' bg-white-100 text-black-500'>
+          <div className='flex flex-col items-center pt-[var(--size-l)] px-[var(--size-md)] pb-[var(--size-l)]'>
             <img
               src={hero}
               className='w-[344px] mb-[var(--size-sm)]'
               alt='FurFind Hero Image'
             />
             <div className='flex flex-col mb-[var(--size-sm)]'>
-              <h1 className='text-l text-white-100 text-center font-black leading-none mb-[var(--size-xsm)] text-balance'>REUNITING PETS & OWNERS</h1>
-              <p className='text-center text-white-200 align-center'>Take action now. Report lost or found pets and help bring them home faster. Every second counts. Make a difference today.</p>
+              <h1 className='text-l text-coral-700 font-black leading-none mb-[var(--size-xsm)] text-center text-balance'>Reuniting pets & owners</h1>
+              <p className='text-center'>Take action now. Report lost or found pets and help bring them home faster.</p>
             </div>
-            <LargeButton innerHTML={"Report a Pet"} />
+            <Link to="/reportpet" className="text-left">
+              <LargeButton className="" innerHTML={"Report a Pet"} />            
+            </Link>
           </div>
         </div>
         {/* What is Furfind */}
@@ -63,7 +65,9 @@ const Home = () => {
             <div className='flex flex-col items-center'>
               {/* Carousel */}
               <Carousel />
-              <NormalButton className='' innerHTML={"Browse All"} />
+              <Link to="/petreports/page/1">
+                <NormalButton className='' innerHTML={"Browse All"} />              
+              </Link>
             </div>
           </div>
         </div>
@@ -72,23 +76,39 @@ const Home = () => {
           <h2 className='text-black-600 text-l font-semibold mb-[var(--size-sm)]'>Become a Pet Hero</h2>
           <img className='mb-[var(--size-sm)]' src={petHero}/>
           <p className='text-center text-black-500 align-center mb-[var(--size-sm)] text-balance'>Join FurFind PH to help reunite lost pets with their families. Sign up today and be a hero for pets in need!</p>
-          <NormalButton className='' innerHTML={"Be a Pet Hero"} />
+          <Link to="/signup">
+            <NormalButton className='' innerHTML={"Be a Pet Hero"} />
+          </Link>
         </div>
         {/* Footer */}
         <div className='flex flex-col gap-[var(--size-sm)] items-center bg-white-100 px-[4px] py-[var(--size-sm)] border-t-1 border-black-100'>
-          <div className='flex flex-row gap-[8px] items-center cursor-pointer'>
-            <img src={pawLogo} />
-            <p className='text-logo font-raleway font-black text-coral-700 hover:text-coral-600'>FurFind</p>
-          </div>
+          <Link to="/">
+            <div className='flex flex-row gap-[8px] items-center cursor-pointer'>
+              <img src={pawLogo} />
+              <p className='text-logo font-raleway font-black text-coral-700 hover:text-coral-600'>FurFind</p>
+            </div>
+          </Link>
           <div className='flex flex-col gap-[2px] items-center text-black-500'>
-            <p className='cursor-pointer hover:text-coral-700'>About Us</p>
-            <p className='cursor-pointer hover:text-coral-700'>Lost and Found Pets</p>
-            <p className='cursor-pointer hover:text-coral-700'>Privacy Policy</p>
+            <Link to="/about">
+              <p className='cursor-pointer hover:text-coral-700'>About Us</p>
+            </Link>
+            <Link to="/petreports/page/1">
+              <p className='cursor-pointer hover:text-coral-700'>Lost and Found Pets</p>
+            </Link>
+            <Link to="/privacypolicy">
+              <p className='cursor-pointer hover:text-coral-700'>Privacy Policy</p>
+            </Link>
           </div>
           <div className='flex flex-row gap-[8px] items-center'>
-            <img className='cursor-pointer' src={facebookIcon} alt="" />
-            <img className='cursor-pointer' src={instagramIcon} alt="" />
-            <img className='cursor-pointer' src={xIcon} alt="" />
+            <Link to="/">
+              <img className='cursor-pointer' src={facebookIcon} alt="" />
+            </Link>
+            <Link to="/">
+              <img className='cursor-pointer' src={instagramIcon} alt="" />
+            </Link>
+            <Link to="/">
+              <img className='cursor-pointer' src={xIcon} alt="" />
+            </Link>
           </div>
           <p className='text-black-500'>© {yearPresent} FurFind PH</p>
         </div>

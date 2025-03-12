@@ -10,6 +10,8 @@ import PetProfile from './pages/PetProfile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   const { getPetReports } = useGetPetReports();
@@ -51,7 +53,15 @@ function App() {
               <Route
                 path="/signup" 
                 element={<Signup />}
-              />               
+              />
+              <Route 
+                path="/privacypolicy"
+                element={<PrivacyPolicy />}
+              />
+              <Route 
+                path="/about"
+                element={<AboutUs />}
+              />             
             </Routes>
           </div>
         </BrowserRouter>
