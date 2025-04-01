@@ -5,12 +5,10 @@ const PetReportsGroup = () => {
     const { pageReports } = useGetPage();
 
     return (
-        <div className="pet-reports-page">
-            <div className="pet-reports">
-                {pageReports && pageReports.map((p) => (
-                    <PetReportDetails key={p._id} petReport={p} />
-                ))}
-            </div>
+        <div className="flex flex-col items-center gap-[8px] p-[4px]">
+            {pageReports && pageReports.map((p) => (
+                <PetReportDetails key={p._id} petReport={p} />
+            ))}
         </div>
       )
 }

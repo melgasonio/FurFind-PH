@@ -7,65 +7,141 @@ const PetReportsPageButtons = () => {
     const { petReports } = usePetReportContext();
 
     const reportsCount = petReports.length;
+    // 
     const totalPages = Math.ceil(reportsCount / 20);
-    const pagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+    const numsArray = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     const setPage = (pageNum) => setLastClicked(pageNum);
 
-    const handlePrev = () => setPage(Math.max(1, lastClicked - 1));
-    const handleNext = () => setPage(Math.min(totalPages, lastClicked + 1));
+    const handlePrev = () => setPage(Math.max(1, lastClicked - 1)); //Prevents going to 0 and below
+    const handleNext = () => setPage(Math.min(totalPages, lastClicked + 1)); //Prevents going beyond the total number of pages
     const handleFirst = () => setPage(1);
     const handleLast = () => setPage(totalPages);
+    const handleNum = (page) => setPage(page);
 
-    const getPaginationButtons = () => {
-        if (totalPages <= 5) {
-            return pagesArray;
+    // If totalPages is greater than 5, it will be complicated :)
+    // Only show five number buttons at a time
+    // Basic: totalPages is 5 or less. Show double previous, previous, numbers, next, double next.
+    // Complex: totalPages is 5 or more. The number buttons to be displayed, and the placement of ellipses, will depend on the lastClicked value.
+        // If lastClicked is 5 or less. Show double previous, previous, numbers, ellipse (linked to the last page), next, double next.
+        // If lastClicked is totalPages - 4 or more. Show double previous, previous, ellipse (linked to the first page), numbers, next, double next.
+        // If lastClicked is greater than 5 and or less than totalPages - 4. Show double previous, previous, ellipse (linked to the first page), numbers, ellipse (linked to the last page), next, double next.
+    
+    console.log(lastClicked)
+    
+    const getBtsDisplay = () => {
+        if (totalPages <= 5)
+            return numsArray;
+
+        if (lastClicked > 5 && lastClicked < totalPages - 4) {
+            return numsArray.slice(lastClicked - 1, lastClicked + 5);
+        } 
+
+        if (lastClicked > 5 && lastClicked >= totalPages - 4) {
+            return numsArray.slice(totalPages - 5);
         }
 
-        if (lastClicked < 6) {
-            return [...pagesArray.slice(0, 5), '...'];
-        }
-
-        if (lastClicked > totalPages - 5) {
-            return ['...', ...pagesArray.slice(-5)];
-        }
-
-        return ['...', lastClicked - 1, lastClicked, lastClicked + 1, '...'];
-    };
+        return numsArray.slice(0, 5);
+    }
 
     return (
-        <div className='page-btns flex gap-2'>
-            <div className='page-btn flex items-center'>
-                {totalPages > 5 && (
+        <div className='flex flex-row items-center justify-between w-full text-black-500 font-semibold'>
+            {totalPages <= 5 && (
+                <div>
                     <Link to='/petreports/page/1'>
-                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleFirst}>&lt;&lt;</button>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleFirst}>&lt;&lt;</button>
                     </Link>
-                )}
-                <Link to={`/petreports/page/${lastClicked - 1}`}>
-                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handlePrev}>&lt;</button>
-                </Link>
-                {getPaginationButtons().map((page, index) => (
-                    <Link key={index} to={`/petreports/page/${page}`}> 
-                        <button
-                            className={
-                                page === lastClicked
-                                    ? 'bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' 
-                                    : 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-                            }
-                            onClick={() => (page !== '...' ? setPage(page) : null)}>
-                            {page}
-                        </button>
+                    <Link to={lastClicked === 1 ? '/petreports/page/1' : `/petreports/page/${lastClicked - 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handlePrev}>&lt;</button>
                     </Link>
-                ))}
-                <Link to={`/petreports/page/${lastClicked + 1}`}>
-                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleNext}>&gt;</button>
-                </Link>
-                {totalPages > 5 && (
+                    {getBtsDisplay().map((page, index) => (
+                        <Link key={index} to={`/petreports/page/${page}`}>
+                            <button className={page === lastClicked ? 'cursor-pointer rounded-[8px] bg-black-600 text-white-200 hover:bg-black-500 p-[var(--size-sm)]' : 'cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]'} onClick={() => handleNum(page)}>{page}</button>
+                        </Link>
+                    ))}
+                    <Link to={lastClicked === totalPages ? `/petreports/page/${totalPages}` : `/petreports/page/${lastClicked + 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleNext}>&gt;</button>
+                    </Link>
                     <Link to={`/petreports/page/${totalPages}`}>
-                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleLast}>&gt;&gt;</button>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleLast}>&gt;&gt;</button>
+                    </Link>                
+                </div>
+            )}
+            {lastClicked <= 5 && (
+                <div>
+                    <Link to='/petreports/page/1'>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleFirst}>&lt;&lt;</button>
+                     </Link>
+                    <Link to={lastClicked === 1 ? '/petreports/page/1' : `/petreports/page/${lastClicked - 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handlePrev}>&lt;</button>
                     </Link>
-                )}
-            </div>
+                    {getBtsDisplay().map((page, index) => (
+                        <Link key={index} to={`/petreports/page/${page}`}>
+                            <button className={page === lastClicked ? 'cursor-pointer rounded-[8px] bg-black-600 text-white-200 hover:bg-black-500 p-[var(--size-sm)]' : 'cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]'} onClick={() => handleNum(page)}>{page}</button>
+                        </Link>
+                    ))}
+                    <Link to={`/petreports/page/${totalPages}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleLast}>...</button>
+                    </Link>
+                    <Link to={lastClicked === totalPages ? `/petreports/page/${totalPages}` : `/petreports/page/${lastClicked + 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleNext}>&gt;</button>
+                    </Link>
+                    <Link to={`/petreports/page/${totalPages}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleLast}>&gt;&gt;</button>
+                    </Link>
+                </div>
+            )}
+            {lastClicked > 5 && lastClicked >= totalPages - 4 && (
+                <div>
+                    <Link to='/petreports/page/1'>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleFirst}>&lt;&lt;</button>
+                     </Link>
+                    <Link to={lastClicked === 1 ? '/petreports/page/1' : `/petreports/page/${lastClicked - 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handlePrev}>&lt;</button>
+                    </Link>
+                    <Link to='/petreports/page/1'>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleFirst}>...</button>
+                     </Link>                    
+                    {getBtsDisplay().map((page, index) => (
+                        <Link key={index} to={`/petreports/page/${page}`}>
+                            <button className={page === lastClicked ? 'cursor-pointer rounded-[8px] bg-black-600 text-white-200 hover:bg-black-500 p-[var(--size-sm)]' : 'cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]'} onClick={() => handleNum(page)}>{page}</button>
+                        </Link>
+                    ))}
+                    <Link to={lastClicked === totalPages ? `/petreports/page/${totalPages}` : `/petreports/page/${lastClicked + 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleNext}>&gt;</button>
+                    </Link>
+                    <Link to={`/petreports/page/${totalPages}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleLast}>&gt;&gt;</button>
+                    </Link>
+                </div>
+            )}
+            {lastClicked > 5 && lastClicked < totalPages - 4 && (
+                <div>
+                    <Link to='/petreports/page/1'>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleFirst}>&lt;&lt;</button>
+                     </Link>
+                    <Link to={lastClicked === 1 ? '/petreports/page/1' : `/petreports/page/${lastClicked - 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handlePrev}>&lt;</button>
+                    </Link>
+                    <Link to='/petreports/page/1'>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleFirst}>...</button>
+                     </Link>                    
+                    {getBtsDisplay().map((page, index) => (
+                        <Link key={index} to={`/petreports/page/${page}`}>
+                            <button className={page === lastClicked ? 'cursor-pointer rounded-[8px] bg-black-600 text-white-200 hover:bg-black-500 p-[var(--size-sm)]' : 'cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]'} onClick={() => handleNum(page)}>{page}</button>
+                        </Link>
+                    ))}
+                    <Link to={`/petreports/page/${totalPages}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleLast}>...</button>
+                    </Link>                    
+                    <Link to={lastClicked === totalPages ? `/petreports/page/${totalPages}` : `/petreports/page/${lastClicked + 1}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleNext}>&gt;</button>
+                    </Link>
+                    <Link to={`/petreports/page/${totalPages}`}>
+                        <button className='cursor-pointer rounded-[8px] hover:bg-black-100 p-[var(--size-sm)]' onClick={handleLast}>&gt;&gt;</button>
+                    </Link>
+                </div>
+            )}                        
         </div>
     );
 };
