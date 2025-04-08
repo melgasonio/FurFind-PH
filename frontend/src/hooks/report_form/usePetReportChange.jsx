@@ -6,12 +6,23 @@ export const usePetReportChange = (
 ) => {
     const { fetchCities } = usePsgcData();
     const [cities, setCities] = useState([]);
+    const [imgURL, setImgURL] = useState(null);
 
-    const handleFormChange = async ( e, setFormData, setFile) => {
+    const handleFormChange = async ( e, setFormData, setFile ) => {
         const { name, value, type, files } = e.target;
+        const reader = new FileReader();
 
         if (type === "file") {
-            setFile(files[0]);
+            const image = files[0]
+            setFile(image);
+            
+            reader.onload = () => {
+                const url = reader.result;
+                setImgURL(url);
+            }
+
+            reader.readAsDataURL(image);
+            
         } else {
             setFormData((prevData) => ({
                 ...prevData,
@@ -26,5 +37,5 @@ export const usePetReportChange = (
         }
     }
 
-    return { cities, handleFormChange };
+    return { cities, handleFormChange, imgURL };
 }

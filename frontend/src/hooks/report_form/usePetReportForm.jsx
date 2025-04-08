@@ -25,7 +25,7 @@ export const usePetReportForm = () => {
       error
     } = usePsgcData();
 
-    const { cities, handleFormChange } = usePetReportChange();
+    const { cities, handleFormChange, imgURL } = usePetReportChange();
 
     const handleChange = (e) => {
         handleFormChange(e, setFormData, setImageFile);
@@ -58,6 +58,7 @@ export const usePetReportForm = () => {
         handleChange,
         handleSubmit,
         formStatus,
-        error
+        error,
+        imgURL
     };
 }
