@@ -133,7 +133,7 @@ const PetReportForm = () => {
           <label 
           htmlFor="last_seen_city"
           className="text-black-600">
-            City*
+            City* (Choose a Region first)
           </label>
           <select
             id="last_seen_city"
