@@ -19,8 +19,8 @@ const Footer = () => {
             </div>
         </Link>
         <div className='flex flex-col gap-[2px] items-center text-black-500'>
-            <Link to="/about">
-              <p className='cursor-pointer hover:text-coral-700'>About Us</p>
+            <Link to="/community">
+              <p className='cursor-pointer hover:text-coral-700'>Community Guidelines</p>
             </Link>
             <Link to="/petreports/page/1">
               <p className='cursor-pointer hover:text-coral-700'>Lost and Found Pets</p>

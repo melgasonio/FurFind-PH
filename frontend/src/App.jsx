@@ -12,6 +12,8 @@ import Signup from './pages/Signup';
 import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
+import MVP from './pages/MVP';
+import CommunityGuidelines from './pages/CommunityGuidelines';
 
 function App() {
   const { getPetReports } = useGetPetReports();
@@ -61,7 +63,15 @@ function App() {
               <Route 
                 path="/about"
                 element={<AboutUs />}
-              />             
+              />
+              <Route 
+                path="/mvpdisclaimer"
+                element={<MVP />}
+              />
+              <Route 
+                path="/community"
+                element={<CommunityGuidelines />}
+              />                    
             </Routes>
           </div>
         </BrowserRouter>
