@@ -70,7 +70,7 @@ const Home = () => {
           <img className='mb-[var(--size-sm)]' src={petHero}/>
           <p className='text-center text-black-500 align-center mb-[var(--size-sm)] text-balance'>Join FurFind PH to help reunite lost pets with their families. Sign up today and be a hero for pets in need!</p>
           <Link to="/signup">
-            <NormalButton className='' innerHTML={"Be a Pet Hero"} />
+            <NormalButton className='' innerHTML={"Sign Up Now"} />
           </Link>
         </div>
         {/* Footer */}
