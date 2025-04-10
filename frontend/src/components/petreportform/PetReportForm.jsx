@@ -83,7 +83,7 @@ const PetReportForm = () => {
             onChange={handleChange}
             maxLength="20"
             required
-            className="cursor-text border-1 border-black-300 rounded-[5px] p-[4px]"
+            className="cursor-text border-1 border-black-300 rounded-[5px] py-[4px] px-[8px]"
           />
           <label htmlFor="breed" className="text-black-600">Breed*</label>
           <input
@@ -94,7 +94,7 @@ const PetReportForm = () => {
             onChange={handleChange}
             maxLength="20"
             required
-            className="cursor-text border-1 border-black-300 rounded-[5px] p-[4px] mb-[20px]"
+            className="cursor-text border-1 border-black-300 rounded-[5px] py-[4px] px-[8px] mb-[20px]"
           />
           <p className="mb-[12px] text-black-700 font-size-[14px] font-semibold">Last Seen Information</p>
           <label 
@@ -108,7 +108,7 @@ const PetReportForm = () => {
             value={formData.last_seen_region}
             onChange={handleChange}
             required
-            className="cursor-pointer border-1 border-black-300 rounded-[5px] p-[4px]"
+            className="cursor-pointer border-1 border-black-300 rounded-[5px] py-[4px] px-[8px]"
           >
             <option
             key="dp-region"
@@ -141,7 +141,7 @@ const PetReportForm = () => {
             value={formData.last_seen_city}
             onChange={handleChange}
             required
-            className="cursor-pointer border-1 border-black-300 rounded-[5px] p-[4px]"
+            className="cursor-pointer border-1 border-black-300 rounded-[5px] py-[4px] px-[8px]"
           >
             <option
             key="dp-city"
@@ -174,7 +174,7 @@ const PetReportForm = () => {
             type="date"
             value={formData.last_seen_date}
             onChange={handleChange}
-            className="cursor-pointer border-1 border-black-300 rounded-[5px] p-[4px]"
+            className="cursor-pointer border-1 border-black-300 rounded-[5px] py-[4px] px-[8px]"
           />
           <label 
           htmlFor="notes"
@@ -189,7 +189,7 @@ const PetReportForm = () => {
             value={formData.notes}
             onChange={handleChange}
             maxLength="150"
-            className="cursor-text border-1 border-black-300 rounded-[5px] p-[4px]"
+            className="cursor-text border-1 border-black-300 rounded-[5px] py-[4px] px-[8px]"
           />
         </div>
         <div className="flex items-stretch">
