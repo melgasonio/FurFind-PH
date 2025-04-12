@@ -21,8 +21,8 @@ const Home = () => {
     <div className={isNavOpen ? "hidden" : "font-lato"}>
       <BodyContainer>
         {/* Hero Section */}
-        <div className=' bg-white-100 text-black-500 h-100vh'>
-          <div className='flex flex-col items-center from0 justify-center h-full pt-[var(--size-l)] px-[var(--size-md)] pb-[var(--size-l)] bg-white-100'>
+        <div className=' bg-white-100 text-black-500 h-screen flex flex-col'>
+          <div className='flex-grow flex flex-col items-center justify-center h-full pt-[var(--size-l)] px-[var(--size-md)] pb-[var(--size-l)] bg-white-100'>
             <div className='flex flex-col mb-[var(--size-sm)]'>
               <h1 className='text-l text-coral-800 font-black leading-none mb-[4px] text-center text-balance'>REPORT NOW</h1>
               <p className='text-center text-black-400'>Take action now. Report lost or found pets and help bring them home faster.</p>
