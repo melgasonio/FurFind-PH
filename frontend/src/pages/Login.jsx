@@ -14,7 +14,7 @@ import { useNavigationContext } from '../hooks/navigation/useNavigationContext';
 const Login = () => {
     const { handleChange, handleLogin, form } = useLoginForm();
     const [isPassword, setIsPassword] = useState(true);
-    const { isNavOpen } = useNavigationContext*();
+    const { isNavOpen } = useNavigationContext();
 
     return (
         <div className={isNavOpen ? 'hidden' : 'font-lato'}>
