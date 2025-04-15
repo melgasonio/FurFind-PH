@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { usePetReportContext } from '../../hooks/pet_reports/usePetReportContext';
 import { useLastButtonContext } from '../../hooks/pet_reports/useLastButtonContext';
 
-const PetReportsPageButtons = () => {
+const PetReportsPageButtons = ({ className }) => {
     const { lastClicked, setLastClicked } = useLastButtonContext();
     const { petReports } = usePetReportContext();
 
@@ -84,10 +84,10 @@ const PetReportsPageButtons = () => {
     );
 
     return (
-        <div className='flex flex-row items-center justify-between w-full text-black-500 font-semibold'>
+        <div className={`flex w-full text-black-500 font-semibold ${className}`}>
             {/* Simple pagination: totalPages <= 5 */}
             {totalPages <= 5 && (
-                <div>
+                <div className='flex-1 flex flex-row justify-around'>
                     <FirstButton />
                     <PrevButton />
                     {renderNumberButtons()}
@@ -98,7 +98,7 @@ const PetReportsPageButtons = () => {
 
             {/* First 5 pages (show right ellipsis) */}
             {lastClicked <= 5 && (
-                <div>
+                <div className='flex-1 flex flex-row justify-around'>
                     <FirstButton />
                     <PrevButton />
                     {renderNumberButtons()}
@@ -117,7 +117,7 @@ const PetReportsPageButtons = () => {
 
             {/* Last 5 pages (show left ellipsis) */}
             {lastClicked > 5 && lastClicked >= totalPages - 4 && (
-                <div>
+                <div className='flex-1 flex flex-row justify-around'>
                     <FirstButton />
                     <PrevButton />
                     <Link to='/petreports/page/1'>
@@ -136,7 +136,7 @@ const PetReportsPageButtons = () => {
 
             {/* Middle pages (show both ellipses) */}
             {lastClicked > 5 && lastClicked < totalPages - 4 && (
-                <div>
+                <div className='flex-1 flex flex-row justify-around'>
                     <FirstButton />
                     <PrevButton />
                     <Link to='/petreports/page/1'>

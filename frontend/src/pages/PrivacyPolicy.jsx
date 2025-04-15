@@ -10,14 +10,14 @@ const PrivacyPolicy = () => {
   return (
     <div className={isNavOpen ? 'hidden' : 'font-lato'}>
       <BodyContainer className="h-screen flex flex-col">
-          <div className='flex-grow flex flex-col justify-center text-black-600 px-[var(--size-md)] p-[var(--size-l)]'>
-              <h1 className='text-md font-bold text-black-700 mb-[24px]'>Privacy Policy</h1>
+          <div className='flex-grow flex flex-col justify-center text-black-400 px-[var(--size-md)] p-[var(--size-l)]'>
+              <h1 className='text-md font-bold text-black-600 mb-[24px]'>Privacy Policy</h1>
               <div className='flex flex-col gap-[8px] mb-[16px]'>
                   <p>Thank you for trusting us. This Privacy Policy outlines how we collect, use, disclose, and safeguard your personal information when you use our platform. Our goal is to support safe and efficient reunification of lost and found pets, while protecting your privacy and data.</p>
               </div>
               <ol className='flex flex-col gap-[12px]'>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>1. Information We Collect</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>1. Information We Collect</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <p>We collect the following types of information to provide and improve our services:</p>
                       <ul className='list-disc list-inside'>
@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
                     </div>
                   </li>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>2. How We Use Your Information</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>2. How We Use Your Information</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <p>We use the information we collect for the following purposes:</p>
                       <ul className='list-disc list-inside'>
@@ -43,7 +43,7 @@ const PrivacyPolicy = () => {
                     </div>
                   </li>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>3.Information Sharing and Disclosure</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>3.Information Sharing and Disclosure</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <ul className='list-disc list-inside'>
                         <li>Public pet listings will be visible to all visitors of the site.</li>
@@ -53,7 +53,7 @@ const PrivacyPolicy = () => {
                     </div>
                   </li>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>4. Your Rights and Choices</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>4. Your Rights and Choices</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <p>You have the right to:</p>
                       <ul className='list-disc list-inside'>
@@ -65,19 +65,19 @@ const PrivacyPolicy = () => {
                     </div>
                   </li>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>5. Data Security</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>5. Data Security</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <p>We implement industry-standard measures to protect your information from unauthorized access, alteration, or disclosure. While no system can guarantee complete security, we are committed to safeguarding your data responsibly.</p>
                     </div>
                   </li>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>6. Children’s Privacy</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>6. Children’s Privacy</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <p>Our platform is not intended for children under the age of 13. We do not knowingly collect personal data from children. If we become aware that a child has provided us with personal information, we will promptly delete it.</p>
                     </div>
                   </li>
                   <li className='flex flex-col gap-[8px]'>
-                    <h3 className='text-sm font-semibold'>7. Policy Updates</h3>
+                    <h3 className='text-sm font-semibold text-black-500'>7. Policy Updates</h3>
                     <div className='flex flex-col gap-[6px]'>
                       <p>We may update this Privacy Policy from time to time. If significant changes are made, we will notify users via email or a notice on our website. Your continued use of the site after such changes constitutes acceptance of the revised policy.</p>
                     </div>

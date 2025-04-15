@@ -21,7 +21,7 @@ const PetReportForm = () => {
 
   return (
     <div className="">
-      <form className="bg-white-200 flex flex-col gap-[var(--size-xsm)] px-[var(--size-xsm)] py-[var(--size-sm)] rounded-[2.5px]" onSubmit={handleSubmit}>
+      <form className="bg-white-200 flex flex-col gap-[var(--size-xsm)] px-[var(--size-xsm)] py-[var(--size-sm)] rounded-[2.5px] text-black-400" onSubmit={handleSubmit}>
         <div className="flex flex-col text-black-500 font-size-[12px] gap-[8px] mb-[24px]">
           <h3 className="mb-[12px] text-black-700 font-size-[14px] font-semibold">Pet Details</h3>
           <div className="flex flex-col items-center">
