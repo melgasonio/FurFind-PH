@@ -1,19 +1,41 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react';
 
-import NormalButton from '../buttons/NormalButton'
+import NormalButton from '../buttons/NormalButton';
 
-import closeIcon from "../../assets/pet-reports/close-icon.png"
+import closeIcon from "../../assets/pet-reports/close-icon.png";
 
-import { useFilterContext } from '../../hooks/pet_reports/useFilterContext'
-import { usePsgcData } from '../../hooks/report_form/usePsgcData'
-import { useFilteredDataContext } from '../../hooks/pet_reports/useFilteredDataContext'
+import { useFilterContext } from '../../hooks/pet_reports/useFilterContext';
+import { usePsgcData } from '../../hooks/report_form/usePsgcData';
+import { useFilteredDataContext } from '../../hooks/pet_reports/useFilteredDataContext';
+import { useFilterReports } from '../../hooks/pet_reports/useFilterReports';
+import { useHasFilterAppliedContext } from '../../hooks/pet_reports/useHasFilterAppliedContext';
+import { useFilteredCitiesContext } from '../../hooks/pet_reports/useFilteredCitiesContext';
 
 const PetReportsFilter = () => {
+
     const { setIsFiltered } = useFilterContext();
+    const { filterReports } = useFilterReports();
     const { regions, fetchCities } = usePsgcData();
     const { filteredData, setFilteredData } = useFilteredDataContext();
+    const { setHasFilterApplied } = useHasFilterAppliedContext();
+    const { filteredCities, setFilteredCities } = useFilteredCitiesContext();
 
-    const [cities, setCities] = useState([]);
+    useEffect(() => {
+        const loadCities = async () => {
+            const region = filteredData.region;
+
+            if (region === "") {
+                setFilteredCities([]);
+            }
+            
+            if (region !== "" && !filteredCities) {
+                const cities = await fetchCities(region);
+                setFilteredCities(cities);
+            }
+        }
+        
+        loadCities();
+    }, []);
 
     const handleFormChange = async (e, setFilteredData) => {
         const { name, value } = e.target
@@ -26,11 +48,20 @@ const PetReportsFilter = () => {
         if (name === "region") {
             const region = value;
             const cities = await fetchCities(region);
-            setCities(cities);
+            setFilteredCities(cities);
+            setFilteredData((prevData) => ({ 
+                ...prevData,
+                region: region,
+                city: ""
+            }));            
         }
-    }    
+    }
 
-    console.log(filteredData)
+    const handleApplyFilterClick = () => {
+        filterReports(filteredData);
+        setHasFilterApplied(true);
+        setIsFiltered(false);
+    }
 
   return (
     <div className='flex flex-col gap-[12px] px-[42px]'>
@@ -42,65 +73,102 @@ const PetReportsFilter = () => {
                 onClick={() => setIsFiltered(false)}
             />
         </div>
-        <form className='text-black-500 text-[16px]'>
+        <form 
+            className='text-black-500 text-[16px]'
+            onSubmit={(e) => e.preventDefault()}
+        >
             <div className='flex flex-col gap-[36px]'>
                 <div className='flex flex-col gap-[12px]'>
                     <div className='flex flex-col gap-[8px]'>
                         <label
                             className='font-semibold'
-                            htmlFor='pet'
+                            htmlFor='type'
                         >
-                            Pet
+                            Status of Pet:
                         </label>
                         <div className='flex-grow flex flex-row justify-between items-center gap-[8px] px-[6px]'>
                             <div 
                                 className={
-                                    filteredData.pet === "all" 
+                                    filteredData.type === "Lost" 
                                         ? 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 bg-black-100 hover:bg-white-200 border-black-500 py-[4px]' 
                                         : 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 hover:bg-white-200 border-black-500 py-[4px]'
                                 }
-                                onClick={() => setFilteredData({ ...filteredData, pet: "all" })}
+                                onClick={() => setFilteredData(prev => ({ ...prev, type: "Lost" }))}
                             >
                                 <input
                                     className='absolute opacity-0 cursor-pointer'
                                     type='radio'
-                                    name="pet"
-                                    id="all"
-                                    value='all'
+                                    id="Lost"
+                                />
+                                <p>Lost</p>
+                            </div>
+                            <div 
+                                className={
+                                    filteredData.type === "Found" 
+                                        ? 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 bg-black-100 hover:bg-white-200 border-black-500 py-[4px]' 
+                                        : 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 hover:bg-white-200 border-black-500 py-[4px]'
+                                }
+                                onClick={() => setFilteredData(prev => ({ ...prev, type: "Found" }))}
+                            >
+                                <input
+                                    className='absolute opacity-0 cursor-pointer'
+                                    type='radio'
+                                    id="Found"
+                                />
+                                <p>Found</p>
+                            </div>
+                        </div>
+                    </div>                
+                    <div className='flex flex-col gap-[8px]'>
+                        <label
+                            className='font-semibold'
+                            htmlFor='pet'
+                        >
+                            What is your pet?
+                        </label>
+                        <div className='flex-grow flex flex-row justify-between items-center gap-[8px] px-[6px]'>
+                            <div 
+                                className={
+                                    filteredData.pet === "All" 
+                                        ? 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 bg-black-100 hover:bg-white-200 border-black-500 py-[4px]' 
+                                        : 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 hover:bg-white-200 border-black-500 py-[4px]'
+                                }
+                                onClick={() => setFilteredData(prev => ({ ...prev, pet: "All" }))}
+                            >
+                                <input
+                                    className='absolute opacity-0 cursor-pointer'
+                                    type='radio'
+                                    id="All"
                                 />
                                 <p>All</p>
                             </div>
                             <div 
                                 className={
-                                    filteredData.pet === "cat" 
+                                    filteredData.pet === "Cat" 
                                         ? 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 bg-black-100 hover:bg-white-200 border-black-500 py-[4px]' 
                                         : 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 hover:bg-white-200 border-black-500 py-[4px]'
                                 }
-                                onClick={() => setFilteredData({ ...filteredData, pet: "cat" })}
+                                onClick={() => setFilteredData(prev => ({ ...prev, pet: "Cat" }))}
                             >
                                 <input
                                     className='absolute opacity-0 cursor-pointer'
                                     type='radio'
-                                    name="pet"
                                     id="cat"
-                                    value='cat'
                                 />
                                 <p>Cat</p>
                             </div>
                             <div 
                                 className={
-                                    filteredData.pet === "dog" 
+                                    filteredData.pet === "Dog" 
                                         ? 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 bg-black-100 hover:bg-white-200 border-black-500 py-[4px]' 
                                         : 'flex-1 flex flex-row justify-center cursor-pointer rounded-[15px] border-1 hover:bg-white-200 border-black-500 py-[4px]'
                                 }
-                                onClick={() => setFilteredData({ ... filteredData, pet: "dog" })}
+                                onClick={() => setFilteredData(prev => ({ ...prev, pet: "Dog" }))}
                             >
                                 <input
                                     className='absolute opacity-0 cursor-pointer'
                                     type='radio'
-                                    name="pet"
                                     id="dog"
-                                    value='dog'
                                 />
                                 <p>Dog</p>
                             </div>
@@ -111,7 +179,7 @@ const PetReportsFilter = () => {
                             className='font-semibold'
                             htmlFor='region'
                         >
-                            Region
+                            Region where the pet was last seen:
                         </label>
                         <div className='px-[6px]'>
                             <select
@@ -119,7 +187,6 @@ const PetReportsFilter = () => {
                                 name="region"
                                 value={filteredData.region}
                                 onChange={(e) => handleFormChange(e, setFilteredData)}
-                                required
                                 className="cursor-pointer border-1 border-black-400 rounded-[5px] py-[6px] px-[8px] w-full"
                                 >
                                 <option
@@ -127,7 +194,7 @@ const PetReportsFilter = () => {
                                 value=""
                                 disabled
                                 >
-                                    -- Choose a Region --
+                                    -- Select One --
                                 </option>
                                 {regions
                                     .slice()
@@ -149,7 +216,7 @@ const PetReportsFilter = () => {
                         className='font-semibold'
                         htmlFor='city'
                         >
-                            City
+                            City/Municipality where the pet was last seen:
                         </label>
                         <div className='px-[6px]'>
                             <select
@@ -157,7 +224,6 @@ const PetReportsFilter = () => {
                                 name="city"
                                 value={filteredData.city}
                                 onChange={(e) => handleFormChange(e, setFilteredData)}
-                                required
                                 className="cursor-pointer border-1 border-black-400 rounded-[5px] py-[6px] px-[8px] w-full"
                             >
                                 <option
@@ -165,9 +231,9 @@ const PetReportsFilter = () => {
                                     value=""
                                     disabled
                                 >
-                                    -- Choose a City --
+                                    -- Select One --
                                 </option>
-                                {cities
+                                {filteredCities
                                     .slice()
                                     .sort((a, b) => a.name.localeCompare(b.name))
                                     .map((c) => (
@@ -187,64 +253,39 @@ const PetReportsFilter = () => {
                             className='font-semibold'
                             htmlFor='date_range'
                         >
-                                Date Missing
+                                Date the pet first went missing/found:
                         </label>
                         <div className='flex flex-col gap-[4px] px-[6px]'>
                             <div className='flex flex-row gap-[6px]'>
                                 <input 
-                                    type="radio"
+                                    type="date"
                                     name="date_range"
-                                    id="24_hours"
-                                    value="24_hours"
+                                    id="date"
+                                    value={filteredData.date_range}
                                     onChange={(e) => handleFormChange(e, setFilteredData)}
-                                    className='cursor-pointer accent-coral-600'
+                                    className="cursor-pointer border-1 border-black-400 rounded-[5px] py-[6px] px-[8px] w-full"
                                 />
-                                <p>Last 24 hours</p>
-                            </div>
-                            <div className='flex flex-row gap-[6px]'>
-                                <input 
-                                    type="radio"
-                                    name="date_range"
-                                    id="3_days"
-                                    value="3_days"
-                                    onChange={(e) => handleFormChange(e, setFilteredData)}
-                                    className='cursor-pointer accent-coral-600' 
-                                />
-                                <p>Last 3 days</p>
-                            </div>
-                            <div className='flex flex-row gap-[6px]'>
-                                <input 
-                                    type="radio"
-                                    name="date_range"
-                                    id="last_week"
-                                    value="last_week"
-                                    onChange={(e) => handleFormChange(e, setFilteredData)}
-                                    className='cursor-pointer accent-coral-600' 
-                                />
-                                <p>Last week</p>
-                            </div>
-                            <div className='flex flex-row gap-[6px]'>
-                                <input 
-                                    type="radio"
-                                    name="date_range"
-                                    id="last_month"
-                                    onChange={(e) => handleFormChange(e, setFilteredData)}
-                                    value="last_month"
-                                    className='cursor-pointer accent-coral-600'
-                                />
-                                <p>Last month</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-col gap-[6px]'>
-                    <NormalButton 
+                    <NormalButton
+                        type={"button"}
                         className={'bg-white-100 hover:bg-white-200 !text-black-600 hover:text-black-500 shadow-none border-1 border-black-600'}
-                        innerHTML={"Reset"} 
+                        innerHTML={"Reset"}
+                        onClick={() => setFilteredData({
+                            type: "",
+                            pet: "",
+                            region: "",
+                            city: "",
+                            date_range: ""
+                        })}
                     />
                     <NormalButton
                         className={'shadow-none'}
                         innerHTML={"Apply Filter"} 
+                        onClick={handleApplyFilterClick}
                     />
                 </div>
             </div>

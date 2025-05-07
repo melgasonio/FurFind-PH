@@ -90,7 +90,36 @@ const PetReportForm = () => {
             />
           </div>
           <div className="flex flex-col gap-[4px]">
-            <label htmlFor="breed" className="text-black-600">Breed*</label>
+            <label htmlFor="pet_type" className="text-black-600">Pet*</label>
+            <select
+              id="pet_type"
+              name="pet_type"
+              value={formData.pet_type}
+              onChange={handleChange}
+              required
+              className="cursor-pointer border-1 border-black-300 rounded-[5px] py-[4px] px-[8px]"
+            >
+              <option
+                value=""
+                className="cursor-pointer"
+                disabled
+              >
+                -- Select One --
+              </option>
+              <option 
+                value="Cat"
+                className="cursor-pointer">
+                  Cat
+              </option>
+              <option 
+                value="Dog"
+                className="cursor-pointer">
+                  Dog
+              </option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-[4px]">
+            <label htmlFor="breed" className="text-black-600">Breed</label>
             <input
               id="breed"
               name="breed"
@@ -98,7 +127,6 @@ const PetReportForm = () => {
               value={formData.breed}
               onChange={handleChange}
               maxLength="20"
-              required
               className="cursor-text border-1 border-black-300 rounded-[5px] py-[4px] px-[8px] mb-[20px]"
             />
           </div>

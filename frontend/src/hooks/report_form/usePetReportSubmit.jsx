@@ -39,7 +39,7 @@ export const usePetReportSubmit = (setReports) => {
                 const compressedImage = await compressImage(imageFile);
                 await uploadImage(compressedImage, formData.status, _id);
             }
-            setReports(...petReports, reportData);
+            setReports([...petReports, reportData]);
         } catch (err) {
                 console.error("Error in form submission:", err)
                 setError(err.message)

@@ -16,6 +16,10 @@ const petReportSchema = new Schema({
         type: String,
         maxlength: 20
     },
+    pet_type: {
+        type: String,
+        enum: ["Cat", "Dog"]
+    },
     last_seen_date: {
         type: Date
     },
