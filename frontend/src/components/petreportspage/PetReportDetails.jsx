@@ -31,9 +31,6 @@ const PetReportDetails = ({ petReport }) => {
                                 <p className='truncate'>{petReport.last_seen_city}, {petReport.last_seen_region}</p>
                                 <p className='truncate'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tite tite tite titeeeeeeeeeeeeeeeeee</p>
                             </div>
-                            <div className=''>
-                                <SmallButtonNeg innerHTML={"View"}/>
-                            </div>
                         </div>
                     </div>                  
                 </div>             
