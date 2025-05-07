@@ -87,17 +87,12 @@ const PetReportsPageButtons = ({ className }) => {
         <div className={`flex w-full text-black-500 font-semibold ${className}`}>
             {/* Simple pagination: totalPages <= 5 */}
             {totalPages <= 5 && (
-                <div className='flex-1 flex flex-row justify-around'>
-                    <FirstButton />
-                    <PrevButton />
-                    {renderNumberButtons()}
-                    <NextButton />
-                    <LastButton />
+                <div className='hidden'>
                 </div>
             )}
 
             {/* First 5 pages (show right ellipsis) */}
-            {lastClicked <= 5 && (
+            {lastClicked <= 5 && totalPages > 5 && (
                 <div className='flex-1 flex flex-row justify-around'>
                     <FirstButton />
                     <PrevButton />

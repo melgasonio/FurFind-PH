@@ -1,7 +1,6 @@
 import { useGetPetImage } from '../../hooks/pet_reports/useGetPetImage';
 import { Link } from 'react-router-dom';
 import imgPholder from '../../assets/pet_profile/most-recent-pholder.png';
-import SmallButtonNeg from '../buttons/SmallButtonNeg';
 
 const PetReportDetails = ({ petReport }) => {
     const { imageURL, getPetImage } = useGetPetImage();
