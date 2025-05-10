@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
 import { usePetReportContext } from '../../hooks/pet_reports/usePetReportContext';
 import { useLastButtonContext } from '../../hooks/pet_reports/useLastButtonContext';
+import { useReportsPerPageContext } from '../../hooks/pet_reports/useReportsPerPageContext';
 
 const PetReportsPageButtons = ({ className }) => {
+    // Last clicked button is saved as a state, so when user leaves and returns to the page, the last page chosen is still selected.
     const { lastClicked, setLastClicked } = useLastButtonContext();
     const { petReports } = usePetReportContext();
+    const { reportsPerPage } = useReportsPerPageContext();
 
     const reportsCount = petReports.length;
-    const totalPages = Math.ceil(reportsCount / 20);
+    // Total number of pet reports per page: 20; Last page can have 20 or less reports
+    const totalPages = Math.ceil(reportsCount / reportsPerPage);
     const numsArray = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     const setPage = (pageNum) => setLastClicked(pageNum);
@@ -85,14 +89,24 @@ const PetReportsPageButtons = ({ className }) => {
 
     return (
         <div className={`flex w-full text-black-500 font-semibold ${className}`}>
-            {/* Simple pagination: totalPages <= 5 */}
-            {totalPages <= 5 && (
+            {/* No pagianation buttons if total page is 1 */}
+            {totalPages === 1 && (
                 <div className='hidden'>
                 </div>
             )}
 
+            {/* Do not show ellipsis if total pages is 5 or less */}
+            {totalPages <= 5 && totalPages > 1 && (
+                <div className='flex-1 flex flex-row justify-around'>
+                    <PrevButton />
+                    {renderNumberButtons()}
+                    <NextButton/>
+                </div>
+            )
+            }
+
             {/* First 5 pages (show right ellipsis) */}
-            {lastClicked <= 5 && totalPages > 5 && (
+            {totalPages > 5 && lastClicked <= 5 && (
                 <div className='flex-1 flex flex-row justify-around'>
                     <FirstButton />
                     <PrevButton />
