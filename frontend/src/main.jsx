@@ -9,6 +9,7 @@ import { NavigationContextProvider } from './context/navigation/NavigationContex
 import { FilterContextProvider } from "./context/pet_report/FilterContext.jsx";
 import { FilteredDataContextProvider } from './context/pet_report/FilteredDataContext.jsx';
 import { FilteredPetReportContextProvider } from './context/pet_report/FilteredPetReportContext.jsx';
+import { DashboardContextProvider } from './context/dashboard/DashboardContext.jsx';
 import { HasFilterAppliedContextProvider } from './context/pet_report/HasFilterAppliedContext.jsx';
 
 createRoot(document.getElementById('root')).render(
@@ -21,7 +22,9 @@ createRoot(document.getElementById('root')).render(
                             <FilteredDataContextProvider>
                                 <FilteredPetReportContextProvider>
                                     <HasFilterAppliedContextProvider>
-                                        <App />
+                                        <DashboardContextProvider>
+                                            <App />
+                                        </DashboardContextProvider>
                                     </HasFilterAppliedContextProvider>
                                 </FilteredPetReportContextProvider>
                             </FilteredDataContextProvider>

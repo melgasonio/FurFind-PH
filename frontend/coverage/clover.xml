@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1746863969628" clover="3.2.0">
+  <project timestamp="1746863969628" name="All files">
+    <metrics statements="27" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="0" elements="39" coveredelements="9" complexity="0" loc="27" ncloc="27" packages="2" files="6" classes="6"/>
+    <package name="context.pet_report">
+      <metrics statements="12" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="LastButtonContext.jsx" path="C:\Users\Administrator\Desktop\Webdev Projects\FurFind PH\frontend\src\context\pet_report\LastButtonContext.jsx">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="PetReportContext.jsx" path="C:\Users\Administrator\Desktop\Webdev Projects\FurFind PH\frontend\src\context\pet_report\PetReportContext.jsx">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="ReportsPerPageContext.jsx" path="C:\Users\Administrator\Desktop\Webdev Projects\FurFind PH\frontend\src\context\pet_report\ReportsPerPageContext.jsx">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.pet_reports">
+      <metrics statements="15" coveredstatements="3" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="useLastButtonContext.jsx" path="C:\Users\Administrator\Desktop\Webdev Projects\FurFind PH\frontend\src\hooks\pet_reports\useLastButtonContext.jsx">
+        <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="usePetReportContext.jsx" path="C:\Users\Administrator\Desktop\Webdev Projects\FurFind PH\frontend\src\hooks\pet_reports\usePetReportContext.jsx">
+        <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="useReportsPerPageContext.jsx" path="C:\Users\Administrator\Desktop\Webdev Projects\FurFind PH\frontend\src\hooks\pet_reports\useReportsPerPageContext.jsx">
+        <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

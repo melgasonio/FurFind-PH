@@ -14,6 +14,10 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import MVP from './pages/MVP';
 import CommunityGuidelines from './pages/CommunityGuidelines';
+import Dashboard from './components/Dashboard';
+import Posts from './pages/Posts';
+import Messages from './pages/Messages';
+import Settings from './pages/Settings';
 
 function App() {
   const { getPetReports } = useGetPetReports();
@@ -30,6 +34,7 @@ function App() {
       <div className="scroll-smooth">
         <BrowserRouter>
           <Navbar />
+          <Dashboard />
           <div className=''>
             <Routes className=''>
               <Route 
@@ -71,7 +76,19 @@ function App() {
               <Route 
                 path="/community"
                 element={<CommunityGuidelines />}
-              />                    
+              /> 
+              <Route 
+                path="/posts"
+                element={<Posts />}
+              />
+              <Route 
+                path="/messages"
+                element={<Messages />}
+              />
+              <Route 
+                path="/settings"
+                element={<Settings />}
+              />                  
             </Routes>
           </div>
         </BrowserRouter>
