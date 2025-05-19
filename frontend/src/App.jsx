@@ -9,7 +9,6 @@ import ReportPet from './pages/ReportPet';
 import PetProfile from './pages/PetProfile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import MVP from './pages/MVP';
@@ -18,9 +17,19 @@ import Dashboard from './components/Dashboard';
 import Posts from './pages/Posts';
 import Messages from './pages/Messages';
 import Settings from './pages/Settings';
+import ViewOwnPost from './pages/ViewOwnPost';
+import EditOwnPost from './pages/EditOwnPost';
+
+import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
+import { useNavigationContext } from './hooks/navigation/useNavigationContext';
+import { useDashboardContext } from './hooks/dashboard/useDashboardContext';
+import DeleteOwnPost from './pages/DeleteOwnPost';
 
 function App() {
   const { getPetReports } = useGetPetReports();
+  const { isNavOpen } = useNavigationContext();
+  const { isDashboardOpen } = useDashboardContext();
+
   useEffect(() => {
     const fetchReports = async () => {
         await getPetReports();
@@ -35,7 +44,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Dashboard />
-          <div className=''>
+          <div className={isNavOpen || isDashboardOpen ? "hidden" : "font-lato"}>
             <Routes className=''>
               <Route 
                 path="/"
@@ -88,7 +97,15 @@ function App() {
               <Route 
                 path="/settings"
                 element={<Settings />}
-              />                  
+              />
+              <Route
+                path="/edit/dummy123"
+                element={<EditOwnPost />}
+              />
+              <Route
+                path="/delete/dummy123"
+                element={<DeleteOwnPost />}
+              />                   
             </Routes>
           </div>
         </BrowserRouter>

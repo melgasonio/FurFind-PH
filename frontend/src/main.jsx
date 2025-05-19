@@ -11,6 +11,7 @@ import { FilteredDataContextProvider } from './context/pet_report/FilteredDataCo
 import { FilteredPetReportContextProvider } from './context/pet_report/FilteredPetReportContext.jsx';
 import { DashboardContextProvider } from './context/dashboard/DashboardContext.jsx';
 import { HasFilterAppliedContextProvider } from './context/pet_report/HasFilterAppliedContext.jsx';
+import { UploadProgressProvider } from './context/upload_context/UploadContext..jsx';
 
 createRoot(document.getElementById('root')).render(
     <PetReportContextProvider>
@@ -23,7 +24,9 @@ createRoot(document.getElementById('root')).render(
                                 <FilteredPetReportContextProvider>
                                     <HasFilterAppliedContextProvider>
                                         <DashboardContextProvider>
-                                            <App />
+                                            <UploadProgressProvider>
+                                                <App />
+                                            </UploadProgressProvider>
                                         </DashboardContextProvider>
                                     </HasFilterAppliedContextProvider>
                                 </FilteredPetReportContextProvider>

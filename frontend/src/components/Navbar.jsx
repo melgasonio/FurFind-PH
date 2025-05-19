@@ -23,6 +23,7 @@ const Navbar = () => {
     { label: "Report a Pet", path: "/reportpet" },
     { label: "Login", path: "/login", className: "font-bold" },
     { label: "Sign Up", path: "/signup", className: "font-bold" },
+    { label: "Logout", path: "/logout", className: "font-bold" },
   ];
 
   return (
@@ -31,7 +32,7 @@ const Navbar = () => {
         <div className='bg-white-100 h-screen w-full p-[42px] flex flex-col duration-200 ease-in-out font-lato'>
           {/* Header Section */}
           <div className="h-[52px] px-[4px] flex justify-between items-center border-b-[1px] border-black-100">
-            <Link to="/">
+            <Link to="/" onClick={() => setIsNavOpen(false)}>
               <Logo />
             </Link>
             <img
@@ -57,14 +58,6 @@ const Navbar = () => {
                     </Link>
                   </li>
                 ))}
-                <li className="font-bold">
-                  <button
-                    onClick={handleLogout}
-                    className="focus:text-coral-700 hover:text-coral-600"
-                  >
-                    Logout
-                  </button>
-                </li>
               </ul>
             </div>
           </div>

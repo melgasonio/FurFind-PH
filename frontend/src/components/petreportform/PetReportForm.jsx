@@ -1,23 +1,8 @@
-import { usePetReportForm } from "../../hooks/report_form/usePetReportForm";
 import { ProgressBar } from "./ProgressBar";
 
 import NormalButton from "../buttons/NormalButton";
 
-import avatar from "../../assets/report_pet/cat-avatar.jpg"
-
-const PetReportForm = () => {
-  const {
-    formData,
-    regions,
-    cities,
-    handleChange,
-    formStatus,
-    handleSubmit,
-    error,
-    imgURL
-  } = usePetReportForm();
-
-  console.log(imgURL)
+const PetReportForm = ({ formData, regions, cities, handleChange, formStatus, handleSubmit, error, imgURL, avatar, imgBtnText, imgRequired, buttons }) => {
 
   return (
     <div className="">
@@ -33,7 +18,7 @@ const PetReportForm = () => {
           <label
             className="w-[180px] text-center cursor-pointer font-size-[10px] border-1 border-black-500 p-[4px] rounded-[5px] hover:bg-black-100"
             htmlFor="image">
-              Add Photo*
+              {imgBtnText}
           </label>
           </div>
           <input
@@ -42,7 +27,7 @@ const PetReportForm = () => {
             type="file"
             accept="image/*"
             onChange={handleChange}
-            required
+            required={imgRequired}
             className="hidden"
           />
           <div className="flex flex-col gap-[4px]">
@@ -54,6 +39,7 @@ const PetReportForm = () => {
                 id="Lost"
                 value={"Lost"}
                 onChange={handleChange}
+                defaultChecked={formData.status === "Lost"}
                 className="mr-[2px] cursor-pointer accent-coral-300"
               />
               <label
@@ -67,6 +53,7 @@ const PetReportForm = () => {
                 id="Found"
                 value={"Found"}
                 onChange={handleChange}
+                defaultChecked={formData.status === "Found"}
                 className="mr-[2px] cursor-pointer accent-coral-300"
               />
               <label
@@ -234,13 +221,8 @@ const PetReportForm = () => {
             />
           </div>
         </div>
-        <div className="flex items-stretch">
-          <NormalButton 
-            innerHTML={"Report Pet"}
-            type="submit" 
-            disabled={formStatus === "submitting"}
-            className="flex-1"
-          />
+        <div className="">
+          {buttons}
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>

@@ -20,9 +20,7 @@ const Dashboard = () => {
     isDashboardOpen && (
     <div className="bg-white-100 h-screen w-full p-[42px] flex flex-col duration-200 ease-in-out font-lato">
         <div className="h-[52px] px-[4px] flex justify-between items-center border-b-[1px] border-black-100">
-            <Link to="/">
-                <Logo />
-            </Link>
+            <h1 className="font-raleway text-logo text-coral-700 font-black hover:text-coral-600">My Dashboard</h1>
             <img
                 onClick={() => setIsDashboardOpen(false)}
                 src={closeIcon}

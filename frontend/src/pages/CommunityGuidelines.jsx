@@ -1,4 +1,3 @@
-import React from 'react'
 import BodyContainer from '../components/BodyContainer'
 import Footer from '../components/Footer'
 
@@ -10,7 +9,7 @@ const CommunityGuidelines = () => {
   return (
     <div className={isNavOpen ? 'hidden' : 'font-lato'}>
       <BodyContainer className="h-screen flex flex-col">
-          <div className='flex-grow flex flex-col justify-center text-black-400 px-[var(--size-md)] p-[var(--size-l)]'>
+          <div className="flex-grow flex flex-col justify-center text-black-400 px-[var(--size-md)] p-[var(--size-l)]">
               <h1 className='text-md font-bold text-black-600 mb-[24px]'>Community Guidelines</h1>
               <div className='flex flex-col gap-[8px] mb-[16px]'>
                   <p>Welcome to our pet-loving community! Whether you’re here to reunite with a lost furry friend or help someone else find theirs, thank you for being part of a space where kindness leads the way.</p>

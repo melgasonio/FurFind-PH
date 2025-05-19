@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useImageUploader } from "./useImageUploader";
+import { useImageUploader } from "./useImageUploader.jsx";
 import { compressImage } from "../../apis/imagecompression/imageCompression";
 import { useUserContext } from "../user/useUserContext";
 import { usePetReportContext } from "../pet_reports/usePetReportContext";
