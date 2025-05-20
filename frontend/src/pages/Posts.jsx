@@ -10,10 +10,12 @@ import viewIcon from "../assets/posts/eye-icon.svg";
 
 import { useNavigationContext } from '../hooks/navigation/useNavigationContext'
 import { useDashboardContext } from "../hooks/dashboard/useDashboardContext"
+import { useModalContext } from '../hooks/modal/useModalContext';
 
 const Posts = () => {
   const { isNavOpen } = useNavigationContext();
   const { isDashboardOpen } = useDashboardContext();
+  const { setIsModalOpen } = useModalContext();
 
   const dummyReports = [
     {
@@ -104,6 +106,7 @@ const Posts = () => {
                         src={deleteIcon} 
                         alt="delete-post"
                         className="h-[24px] cursor-pointer"
+                        onClick={() => setIsModalOpen(true)}
                       />
                     </Link>
                     <Link to="/view/dummy123">

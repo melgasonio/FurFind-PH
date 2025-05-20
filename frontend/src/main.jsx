@@ -12,6 +12,7 @@ import { FilteredPetReportContextProvider } from './context/pet_report/FilteredP
 import { DashboardContextProvider } from './context/dashboard/DashboardContext.jsx';
 import { HasFilterAppliedContextProvider } from './context/pet_report/HasFilterAppliedContext.jsx';
 import { UploadProgressProvider } from './context/upload_context/UploadContext..jsx';
+import { ModalContextProvider } from './context/modal/ModalContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <PetReportContextProvider>
@@ -25,7 +26,9 @@ createRoot(document.getElementById('root')).render(
                                     <HasFilterAppliedContextProvider>
                                         <DashboardContextProvider>
                                             <UploadProgressProvider>
-                                                <App />
+                                                <ModalContextProvider>
+                                                    <App />
+                                                </ModalContextProvider>                                               
                                             </UploadProgressProvider>
                                         </DashboardContextProvider>
                                     </HasFilterAppliedContextProvider>

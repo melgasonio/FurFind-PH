@@ -64,7 +64,7 @@ const Navbar = () => {
         </div>      
       ) : (
         // Render if navigation is closed
-        <div className="fixed top-0 left-0 right-0 w-full h-[48px] bg-white-100 shadow-md flex items-center px-[8px] py-[4px] z-50">
+        <div className="fixed top-0 left-0 right-0 w-full h-[48px] bg-white-100 shadow-md flex items-center px-[8px] py-[4px] z-10">
           <div className="absolute left-[0px] px-[8px] py-[8px]">
             <img
               onClick={() => setIsNavOpen(true)}

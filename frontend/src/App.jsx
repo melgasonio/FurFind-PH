@@ -19,16 +19,20 @@ import Messages from './pages/Messages';
 import Settings from './pages/Settings';
 import ViewOwnPost from './pages/ViewOwnPost';
 import EditOwnPost from './pages/EditOwnPost';
+import DeleteOwnPost from './pages/DeleteOwnPost';
+import Modal from './components/Modal';
 
 import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
 import { useNavigationContext } from './hooks/navigation/useNavigationContext';
 import { useDashboardContext } from './hooks/dashboard/useDashboardContext';
-import DeleteOwnPost from './pages/DeleteOwnPost';
+import { useModalContext } from './hooks/modal/useModalContext';
+
 
 function App() {
   const { getPetReports } = useGetPetReports();
   const { isNavOpen } = useNavigationContext();
   const { isDashboardOpen } = useDashboardContext();
+  const { isModalOpen } = useModalContext();
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -37,11 +41,15 @@ function App() {
     fetchReports()
   }, []);
 
-
   return (
     <>
       <div className="scroll-smooth">
         <BrowserRouter>
+          {isModalOpen && (
+            <>
+              <Modal />
+            </>
+          )}
           <Navbar />
           <Dashboard />
           <div className={isNavOpen || isDashboardOpen ? "hidden" : "font-lato"}>
@@ -105,7 +113,7 @@ function App() {
               <Route
                 path="/delete/dummy123"
                 element={<DeleteOwnPost />}
-              />                   
+              />
             </Routes>
           </div>
         </BrowserRouter>

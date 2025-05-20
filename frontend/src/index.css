@@ -71,4 +71,8 @@
     --size-logo: 22px;
 
     --btn-shadow: 0px 2px 4px hsla(0, 60%, 60%, 1);
+    
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 960px;
+    --breakpoint-lg: 1440px;
 }
