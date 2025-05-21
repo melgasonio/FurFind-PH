@@ -20,11 +20,6 @@ const PetProfile = () => {
   const { petProfile } = usePetProfileContext();
   const { isNavOpen } = useNavigationContext();
 
-  // const date = new Date(petProfile.last_seen_date);
-  // const options = { year: "numeric", month: "long", day: "numeric" };
-  // const formattedDate = date.toLocaleDateString('en-US', options);
-  // const textDate = formattedDate.toString();
-
   useEffect(() => {
     const fetchProfile = async () => {
       await getPetProfile();

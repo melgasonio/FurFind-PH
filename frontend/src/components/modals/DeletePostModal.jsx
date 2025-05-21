@@ -1,39 +1,27 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import Modal from "../Modal";
+import NormalButton from "../buttons/NormalButton";
 
-import Modal from "../components/Modal";
-import Posts from "./Posts";
-import NormalButton from "../components/buttons/NormalButton";
+import closeIcon from "../../assets/delete_post/close-icon.svg"
 
-import closeIcon from "../assets/delete_post/close-icon.svg"
-
-import { useModalContext } from "../hooks/modal/useModalContext"
+import { useModalContext } from "../../hooks/modal/useModalContext"
+import { useDeleteOwnPost } from "../../hooks/delete_own_post/useDeleteOwnPost";
 
 
-const DeleteOwnPost = () => {
+const DeletePostModal = () => {
   const { setIsModalOpen } = useModalContext();
-
-  const closeHandler = () => {
-    setIsModalOpen(false);
-  }
-
-  useEffect(()=> {
-    setIsModalOpen(true);
-  }, [])
-
+  
+  const { deletePostHandler } = useDeleteOwnPost();
 
   return (
     <div>
       <Modal>
           {/* Close Icon */}
           <div className="flex flex-row justify-end">
-            <Link to="/posts">
-              <img 
-                className="cursor-pointer"
-                src={closeIcon}
-                onClick={closeHandler}
-              />
-            </Link>
+            <img 
+              className="cursor-pointer"
+              src={closeIcon}
+              onClick={() => setIsModalOpen(false)}
+            />
           </div>
           {/* Content */}
           <div className="flex flex-col gap-[12px] items-center justify-center">
@@ -44,22 +32,23 @@ const DeleteOwnPost = () => {
             </div>
             {/* Buttons */}
             <div className="flex flex-col gap-[4px] items-stretch w-full">
-              <NormalButton 
+              <NormalButton
                 innerHTML={"Delete"}
-                type="submit" 
+                type="submit"
                 className="flex-1 bg-black-700 text-white-100 hover:bg-black-600"
+                onClick={deletePostHandler}
               />
               <NormalButton 
                 innerHTML={"Cancel"}
                 type="submit" 
                 className="flex-1 text-black-600 hover:bg-black-100 border-1 border-black-600"
+                onClick={() => setIsModalOpen(false)}
               />
             </div>
           </div>
       </Modal>
-      <Posts />
     </div>
   )
 }
 
-export default DeleteOwnPost
+export default DeletePostModal

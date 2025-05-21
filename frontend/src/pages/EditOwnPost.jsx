@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import BodyContainer from "../components/BodyContainer";
 import Footer from "../components/Footer";
 import PetReportForm from "../components/petreportform/PetReportForm";
@@ -10,8 +12,10 @@ import { useNavigationContext } from "../hooks/navigation/useNavigationContext"
 import { useEditPostForm } from "../hooks/edit_post/useEditPostForm"
 import { useDashboardContext } from "../hooks/dashboard/useDashboardContext"
 
-const EditOwnPost = () => {
-  const { isNavOpen } = useNavigationContext();
+const EditOwnPost = () => { 
+
+  const navigate = useNavigate();
+
   const { isDashboardOpen } = useDashboardContext();
 
   const {
@@ -26,7 +30,7 @@ const EditOwnPost = () => {
   } = useEditPostForm();
 
   return (
-    <div className={isNavOpen || isDashboardOpen ? "hidden" : "font-lato"}>
+    <div>
       <BodyContainer>
         <div className='bg-coral-700 px-[var(--size-xsm)] pt-[var(--size-md)] pb-[var(--size-sm)] flex flex-col gap-[8px]'>
           <div >
@@ -59,6 +63,7 @@ const EditOwnPost = () => {
                     type="submit" 
                     disabled={formStatus === "cancelling"}
                     className="flex-1 text-black-600 hover:bg-black-100 border-1 border-black-600"
+                    onClick={() => navigate(-1)}
                   />
                 </div>
               }

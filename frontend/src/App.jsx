@@ -19,7 +19,6 @@ import Messages from './pages/Messages';
 import Settings from './pages/Settings';
 import ViewOwnPost from './pages/ViewOwnPost';
 import EditOwnPost from './pages/EditOwnPost';
-import DeleteOwnPost from './pages/DeleteOwnPost';
 import Modal from './components/Modal';
 
 import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
@@ -111,8 +110,8 @@ function App() {
                 element={<EditOwnPost />}
               />
               <Route
-                path="/delete/dummy123"
-                element={<DeleteOwnPost />}
+                path="/view/dummy123"
+                element={<ViewOwnPost />}
               />
             </Routes>
           </div>
