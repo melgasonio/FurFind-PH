@@ -15,10 +15,10 @@ import MVP from './pages/MVP';
 import CommunityGuidelines from './pages/CommunityGuidelines';
 import Dashboard from './components/Dashboard';
 import Posts from './pages/Posts';
-import Messages from './pages/Messages';
 import Settings from './pages/Settings';
 import ViewOwnPost from './pages/ViewOwnPost';
 import EditOwnPost from './pages/EditOwnPost';
+import ChatList from './pages/ChatList';
 import Modal from './components/Modal';
 
 import { useGetPetReports } from "./hooks/pet_reports/useGetPetReports";
@@ -98,10 +98,6 @@ function App() {
                 element={<Posts />}
               />
               <Route 
-                path="/messages"
-                element={<Messages />}
-              />
-              <Route 
                 path="/settings"
                 element={<Settings />}
               />
@@ -112,6 +108,10 @@ function App() {
               <Route
                 path="/view/dummy123"
                 element={<ViewOwnPost />}
+              />
+              <Route
+                path="/messages"
+                element={<ChatList />}
               />
             </Routes>
           </div>
